@@ -2117,7 +2117,7 @@ function showFinalResults() {
 
   afterScore.textContent =
     finalRecommended.length +
-    " / 9 recommended items selected";
+    " / 9 essential items selected";
 
 
   finalSelection.forEach(
