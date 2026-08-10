@@ -781,7 +781,38 @@ const day3Clues = {
 
 };
 
+// =========================
+// PRELOAD POPUP IMAGES
+// =========================
 
+function preloadGameImages() {
+
+  const popupImages = [
+    "popup_light.png",
+    "popup_bottle.png",
+    "popup_banana.png",
+    "popup_laptop.png",
+    "popup_phone.png",
+    "popup_power_outlet.png",
+    "popup_glass.png",
+    "popup_tree.png",
+    "popup_neighbour.png"
+  ];
+
+  popupImages.forEach(function (fileName) {
+
+    const image = new Image();
+
+    image.src =
+      "images/" +
+      fileName;
+
+  });
+
+}
+
+// 실행
+preloadGameImages();
 
 // =========================
 // CURRENT CLUE
