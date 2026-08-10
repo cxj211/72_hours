@@ -1,0 +1,2007 @@
+/* =========================
+   GMARKET SANS
+========================= */
+
+@font-face {
+  font-family: "GmarketSans";
+  src: url("fonts/GmarketSansTTFLight.ttf") format("truetype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "GmarketSans";
+  src: url("fonts/GmarketSansTTFMedium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "GmarketSans";
+  src: url("fonts/GmarketSansTTFBold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+
+/* =========================
+   GENERAL
+========================= */
+
+body {
+  margin: 0;
+
+  font-family: "GmarketSans", sans-serif;
+  font-weight: 500;
+
+  background-color: #ffffff;
+}
+
+
+/* =========================
+   GENERAL SCREENS
+========================= */
+
+.screen {
+  display: none;
+
+  min-height: 100vh;
+
+  padding: 100px 40px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+}
+
+.screen.active {
+  display: block;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+  padding: 12px 24px;
+
+  font-family: "GmarketSans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   INITIAL ITEM SELECTION
+========================= */
+
+#item-grid {
+  width: 90%;
+  max-width: 900px;
+
+  margin: 30px auto;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+
+/* ITEM CARD */
+
+.item {
+  min-width: 0;
+  min-height: 155px;
+
+  padding: 12px 10px 10px;
+
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+
+  border: 3px solid #dddddd;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+
+  font-family: "GmarketSans", sans-serif;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+/* ITEM IMAGE */
+
+.item img {
+  display: block;
+
+  width: 100%;
+  height: 105px;
+
+  object-fit: contain;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+
+/* ITEM NAME */
+
+.item span {
+  width: 100%;
+
+  color: #111111;
+
+  font-family: "GmarketSans", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  text-align: center;
+
+  pointer-events: none;
+}
+
+
+/* HOVER */
+
+.item:hover {
+  transform: translateY(-2px);
+
+  border-color: #aaaaaa;
+}
+
+
+/* SELECTED ITEM */
+
+.item.selected {
+  background-color: #f4e8ff;
+
+  border: 4px solid #9b5de5;
+}
+
+
+/* CONFIRM BUTTON */
+
+#confirm-selection {
+  margin-top: 20px;
+
+  padding: 13px 30px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #9b5de5;
+  color: #ffffff;
+
+  font-family: "GmarketSans", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* DISABLED CONFIRM */
+
+#confirm-selection:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   GAME SCREEN
+========================= */
+
+.game-screen {
+  padding: 0;
+
+  background-color: #111111;
+}
+
+.game-scene {
+  width: 100%;
+  max-width: 1290px;
+
+  margin: 0 auto;
+
+  position: relative;
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.scene-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+.game-scene img {
+  -webkit-user-drag: none;
+}
+
+
+/* =========================
+   DAY TITLE
+========================= */
+
+.day-title {
+  position: absolute;
+
+  top: 6%;
+  left: 4%;
+
+  color: white;
+
+  text-align: left;
+
+  z-index: 10;
+
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.75),
+    0 0 8px rgba(0, 0, 0, 0.35);
+}
+
+.day-number {
+  font-size: clamp(18px, 3vw, 48px);
+  font-weight: 700;
+}
+
+.day-theme {
+  margin-top: 8px;
+
+  font-size: clamp(18px, 2.6vw, 42px);
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* =========================
+   INSTRUCTION BOX
+========================= */
+
+.instruction-box {
+  position: absolute;
+
+  top: 22%;
+  left: 4%;
+
+  width: 19%;
+
+  padding: 15px 10px;
+
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+
+  border: 4px solid #c56cff;
+  border-radius: 12px;
+
+  color: #111111;
+
+  font-size: clamp(15px, 1.8vw, 25px);
+  font-weight: 700;
+  line-height: 1.35;
+
+  text-align: center;
+
+  z-index: 10;
+}
+
+
+/* =========================
+   CLUE PANEL
+========================= */
+
+.clue-panel {
+  position: absolute;
+
+  top: 8%;
+  right: 3%;
+
+  width: 10%;
+
+  z-index: 10;
+}
+
+.clue-title {
+  padding: 8px 5px;
+
+  margin-bottom: 12px;
+
+  background-color: #c85cff;
+
+  border-radius: 6px;
+
+  color: white;
+
+  font-size: clamp(10px, 2vw, 20px);
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.clue-slot {
+  aspect-ratio: 1 / 1;
+
+  margin-bottom: 12px;
+
+  background-color: #ead1ff;
+
+  border: 4px solid #c56cff;
+  border-radius: 10px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   CLICKABLE OBJECTS
+========================= */
+
+.clue_object {
+  position: absolute;
+
+  cursor: default;
+
+  z-index: 5;
+}
+
+
+/* =========================
+   DAY 1 CLICKABLE OBJECTS
+========================= */
+
+.light {
+  width: 10%;
+
+  top: 7%;
+  left: 45%;
+}
+
+.bottle {
+  width: 4.3%;
+
+  top: 71%;
+  left: 72%;
+
+  transform: rotate(-95deg);
+}
+
+.banana {
+  width: 9.5%;
+
+  top: 82%;
+  left: 87%;
+}
+
+
+/* =========================
+   POPUP
+========================= */
+
+.popup-overlay {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  background-color: rgba(0, 0, 0, 0.55);
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 50;
+}
+
+.popup-overlay.active {
+  display: flex;
+}
+
+.popup-card {
+  position: relative;
+
+  width: 38%;
+  max-width: 470px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+
+/* =========================
+   CHECK MY KIT BUTTON
+========================= */
+
+.check-kit-button {
+  position: absolute;
+
+  bottom: 4%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 62%;
+
+  padding: 12px 18px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #9b5de5;
+  color: white;
+
+  font-family: "GmarketSans", sans-serif;
+  font-weight: 700;
+  font-size: clamp(13px, 1.5vw, 20px);
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   POPUP CLOSE BUTTON
+========================= */
+
+.popup-close {
+  position: absolute;
+
+  top: 2%;
+  right: 4%;
+
+  width: clamp(23px, 3.5vw, 45px);
+  height: clamp(23px, 3.5vw, 45px);
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+
+  border: clamp(2px, 0.22vw, 3px) solid #9b5de5;
+  border-radius: 50%;
+
+  color: #6f35a5;
+
+  font-family: Arial, sans-serif;
+  font-size: clamp(29px, 3.2vw, 46px);
+  font-weight: 300;
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   KIT POPUP
+========================= */
+
+.kit-popup-card {
+  position: relative;
+
+  width: 62%;
+  max-width: 760px;
+
+  padding: 22px 28px 24px;
+
+  box-sizing: border-box;
+
+  background-color: #f4e8ff;
+
+  border: 5px solid #9b5de5;
+  border-radius: 24px;
+
+  text-align: center;
+}
+
+
+/* TITLE */
+
+.kit-popup-card h2 {
+  margin: 0 0 19px;
+
+  font-size: clamp(22px, 2.5vw, 36px);
+  font-weight: 700;
+}
+
+
+/* INSTRUCTION */
+
+.kit-instruction {
+  margin: 0 0 23px;
+
+  font-size: clamp(18px, 1.6vw, 25px);
+  font-weight: 500;
+}
+
+
+/* ITEM GRID */
+
+#kit-item-grid {
+  width: 90%;
+
+  margin: 0 auto 18px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+
+/* ITEM BUTTON */
+
+.kit-item {
+  position: relative;
+
+  height: clamp(95px, 11.5vw, 145px);
+
+  padding: 10px;
+
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+
+  border: 3px solid #d5b3f3;
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  outline: none;
+}
+
+.kit-item:focus,
+.kit-item:active {
+  outline: none;
+
+  box-shadow: none;
+}
+
+
+/* ITEM IMAGE */
+
+.kit-item img {
+  width: 95%;
+  height: 95%;
+
+  object-fit: contain;
+
+  pointer-events: none;
+}
+
+
+/* USED ITEM */
+
+.kit-item.used {
+  opacity: 0.3;
+
+  cursor: default;
+}
+
+
+/* =========================
+   NOT IN MY KIT BUTTON
+========================= */
+
+.not-in-kit-button {
+  margin-top: 2px;
+
+  padding: 12px 26px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #ff3f3f;
+  color: #ffffff;
+
+  font-family: "GmarketSans", sans-serif;
+  font-size: clamp(14px, 1.5vw, 20px);
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.not-in-kit-button:hover {
+  filter: brightness(0.95);
+}
+
+
+/* TARGET ITEM TEXT */
+
+.target-item {
+  color: #fe2f2f;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   RESULT POPUP
+========================= */
+
+.result-card {
+  width: 34%;
+  max-width: 420px;
+
+  padding: 36px;
+
+  box-sizing: border-box;
+
+  background-color: #f4e8ff;
+
+  border: 5px solid #9b5de5;
+  border-radius: 24px;
+
+  text-align: center;
+}
+
+.result-item-image {
+  width: 48%;
+
+  max-height: 220px;
+
+  object-fit: contain;
+}
+
+.result-text {
+  margin-top: 18px;
+
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 700;
+}
+
+.result-text.prepared {
+  color: #3478f6;
+}
+
+.result-text.not-prepared {
+  color: #ff3f3f;
+}
+
+.result-continue-button {
+  margin-top: 22px;
+
+  padding: 12px 28px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #9b5de5;
+  color: white;
+
+  font-family: "GmarketSans", sans-serif;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   WRONG ITEM SPEECH BUBBLE
+========================= */
+
+.wrong-bubble {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  padding: 7px 11px;
+
+  background: #ffffff;
+  color: #111111;
+
+  border: 1.5px solid #111111;
+  border-radius: 12px;
+
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  z-index: 10;
+
+  pointer-events: none;
+
+  animation: bubble-pop 0.15s ease-out;
+}
+
+.wrong-bubble::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: -7px;
+  right: 15px;
+
+  width: 11px;
+  height: 11px;
+
+  background: white;
+
+  border-right: 1.5px solid #111111;
+  border-bottom: 1.5px solid #111111;
+
+  transform: rotate(45deg);
+}
+
+@keyframes bubble-pop {
+
+  from {
+    opacity: 0;
+
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+
+}
+
+
+/* =========================
+   STATUS RESULT
+========================= */
+
+.status-result {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+}
+
+.status-result img {
+  width: 75%;
+  height: 75%;
+
+  object-fit: contain;
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.status-mark {
+  position: absolute;
+
+  right: 3%;
+  bottom: 1%;
+
+  font-size: clamp(24px, 3vw, 42px);
+  font-weight: 700;
+
+  z-index: 2;
+}
+
+.status-mark.correct {
+  color: #3478f6;
+}
+
+.status-mark.incorrect {
+  color: #ff3f3f;
+}
+
+
+/* =========================
+   DAY COMPLETE POPUP
+========================= */
+
+.day-complete-card {
+  width: 42%;
+  max-width: 520px;
+
+  padding: 42px 35px;
+
+  box-sizing: border-box;
+
+  background-color: #f4e8ff;
+
+  border: 5px solid #9b5de5;
+  border-radius: 24px;
+
+  text-align: center;
+}
+
+.day-complete-title {
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 700;
+}
+
+.day-complete-text {
+  margin-top: 18px;
+
+  font-size: clamp(16px, 1.7vw, 22px);
+  font-weight: 500;
+}
+
+.day-next-button {
+  margin-top: 30px;
+
+  padding: 13px 28px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #9b5de5;
+  color: #ffffff;
+
+  font-family: "GmarketSans", sans-serif;
+  font-size: clamp(14px, 1.5vw, 19px);
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   DAY 2
+===================================================== */
+
+
+/* =========================
+   DAY 2 TITLE
+========================= */
+
+.day2-title {
+  text-shadow:
+    0 2px 4px rgba(95, 42, 68, 0.75),
+    0 0 8px rgba(95, 42, 68, 0.35);
+}
+
+.day2-title .day-theme {
+  font-size: clamp(17px, 2.3vw, 36px);
+}
+
+
+/* =========================
+   DAY 2 INSTRUCTION
+========================= */
+
+.day2-instruction {
+  background-color: #ffffff;
+
+  border-color: #f08bb7;
+}
+
+
+/* =========================
+   DAY 2 STATUS
+========================= */
+
+.day2-clue-title {
+  background-color: #f08bb7;
+}
+
+.day2-clue-slot {
+  background-color: #f9d8e7;
+
+  border-color: #f08bb7;
+}
+
+
+/* =========================
+   DAY 2 CLICKABLE OBJECTS
+========================= */
+
+.day2-laptop {
+  width: 25%;
+
+  top: 30%;
+  left: 39%;
+}
+
+.day2-phone {
+  width: 7%;
+
+  top: 62%;
+  left: 75%;
+}
+
+.day2-power-outlet {
+  width: 9%;
+
+  top: 24%;
+  left: 26%;
+}
+
+
+/* =========================
+   DAY 2 CLUE POPUP
+========================= */
+
+#clue-popup.day2-popup .check-kit-button {
+  background-color: #f58cbd;
+}
+
+#clue-popup.day2-popup .popup-close {
+  color: #e96fa9;
+
+  border-color: #e96fa9;
+}
+
+
+/* =========================
+   DAY 2 KIT POPUP
+========================= */
+
+#kit-popup.day2-popup .kit-popup-card {
+  border-color: #f08bb7;
+}
+
+#kit-popup.day2-popup .kit-item {
+  border-color: #f3b0cf;
+}
+
+#kit-popup.day2-popup .popup-close {
+  color: #e96fa9;
+
+  border-color: #e96fa9;
+}
+
+
+/* =========================
+   DAY 2 COMPLETE POPUP
+========================= */
+
+#day2-complete-popup .day-complete-card {
+  background-color: #fce8f1;
+
+  border-color: #f08bb7;
+}
+
+#day2-complete-popup .day-next-button {
+  background-color: #f08bb7;
+}
+
+
+/* =========================
+   DAY 2 RESULT POPUP
+========================= */
+
+#result-popup.day2-popup .result-card {
+  background-color: #fce8f1;
+
+  border-color: #f08bb7;
+}
+
+#result-popup.day2-popup .result-continue-button {
+  background-color: #f08bb7;
+}
+
+
+/* =====================================================
+   DAY 3
+===================================================== */
+
+
+/* =========================
+   DAY 3 TITLE
+========================= */
+
+.day3-title {
+  top: 6%;
+  left: 4%;
+}
+
+.day3-title .day-theme {
+  font-size: clamp(17px, 2.3vw, 36px);
+}
+
+
+/* =========================
+   DAY 3 INSTRUCTION
+========================= */
+
+.day3-instruction {
+  top: 22%;
+  left: 4%;
+
+  width: 19%;
+
+  background-color: #ffffff;
+
+  border-color: #7fa6f5;
+}
+
+
+/* =========================
+   DAY 3 STATUS
+========================= */
+
+.day3-clue-panel {
+  top: 8%;
+  right: 3%;
+
+  width: 10%;
+}
+
+.day3-clue-title {
+  background-color: #7fa6f5;
+}
+
+.day3-clue-slot {
+  background-color: #d5ddff;
+
+  border-color: #7fa6f5;
+}
+
+
+/* =========================
+   DAY 3 CLICKABLE OBJECTS
+========================= */
+
+.day3-glass {
+  width: 30%;
+
+  top: 82%;
+  left: 35%;
+
+  opacity: 0.6;
+}
+
+.day3-tree {
+  width: 16%;
+
+  top: 22%;
+  left: 35.5%;
+
+  opacity: 0.9;
+}
+
+.day3-neighbour {
+  width: 11%;
+
+  top: 39%;
+  left: 51%;
+
+  opacity: 0.8;
+}
+
+
+/* =========================
+   DAY 3 CLUE POPUP
+========================= */
+
+#clue-popup.day3-popup .check-kit-button {
+  background-color: #7fa6f5;
+}
+
+#clue-popup.day3-popup .popup-close {
+  color: #6f96e8;
+
+  border-color: #7fa6f5;
+}
+
+
+/* =========================
+   DAY 3 KIT POPUP
+========================= */
+
+#kit-popup.day3-popup .kit-popup-card {
+  background-color: #eef2ff;
+
+  border-color: #7fa6f5;
+}
+
+#kit-popup.day3-popup .kit-item {
+  border-color: #b9c9f8;
+}
+
+#kit-popup.day3-popup .popup-close {
+  color: #6f96e8;
+
+  border-color: #7fa6f5;
+}
+
+
+/* =========================
+   DAY 3 RESULT POPUP
+========================= */
+
+#result-popup.day3-popup .result-card {
+  background-color: #eef2ff;
+
+  border-color: #7fa6f5;
+}
+
+#result-popup.day3-popup .result-continue-button {
+  background-color: #7fa6f5;
+}
+
+
+/* =========================
+   DAY 3 COMPLETE
+========================= */
+
+#day3-complete-popup .day-complete-card {
+  width: min(700px, 88vw);
+  max-width: 700px;
+
+  background-color: #eef2ff;
+
+  border-color: #7fa6f5;
+}
+
+
+/* REWIND MESSAGE */
+
+#day3-complete-popup .rewind-text {
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+#day3-complete-popup .rewind-highlight {
+  color: #ff4141;
+
+  font-weight: 700;
+}
+
+
+/* SELECT ITEMS BUTTON */
+
+#day3-complete-popup .day-next-button {
+  background-color: #ff4141;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  #item-grid {
+    width: 95%;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+  }
+
+  .item {
+    min-height: 145px;
+  }
+
+  .item img {
+    height: 95px;
+  }
+
+  #day3-complete-popup .rewind-text {
+    white-space: normal;
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  #item-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .item {
+    min-height: 135px;
+  }
+
+  .item img {
+    height: 85px;
+  }
+
+  .item span {
+    font-size: 13px;
+  }
+
+}
+
+/* =========================
+   ITEM SELECTION - COMPACT
+========================= */
+
+/* 선택 화면만 위쪽 여백 줄이기 */
+#selection-screen {
+  padding: 35px 30px 25px;
+  min-height: 100vh;
+}
+
+
+/* 제목 여백 */
+#selection-screen h1 {
+  margin: 0 0 12px;
+
+  font-size: 32px;
+}
+
+
+/* 설명 문구 */
+#selection-screen p {
+  margin: 6px 0;
+
+  font-size: 18px;
+}
+
+
+/* 0 / 9 selected */
+#selection-count {
+  margin: 8px 0 14px;
+}
+
+
+/* 20개 아이템 영역 */
+#item-grid {
+  width: 86%;
+  max-width: 850px;
+
+  margin: 18px auto 12px;
+
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+
+/* 각각의 카드 */
+.item {
+  min-height: 125px;
+
+  padding: 7px 7px 6px;
+
+  border-radius: 14px;
+}
+
+
+/* 아이템 이미지 */
+.item img {
+  height: 82px;
+}
+
+
+/* 아이템 이름 */
+.item span {
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+
+/* Confirm 버튼 */
+#confirm-selection {
+  margin-top: 10px;
+
+  padding: 11px 28px;
+}
+
+
+body {
+  background-color: #111111;
+}
+ㄴ
+/* =========================
+   TITLE + INTRO SCREENS
+   SAME SIZE AS DAY 1–3
+========================= */
+
+#title-screen,
+#intro-screen {
+  min-height: 100vh;
+  padding: 0;
+
+  background-color: #111111;
+
+  box-sizing: border-box;
+}
+
+
+/* ACTIVE 상태일 때 가운데 배치 */
+
+#title-screen.active,
+#intro-screen.active {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+/* =========================
+   TITLE SCREEN
+========================= */
+
+#title-screen {
+  position: relative;
+
+  width: 100%;
+  max-width: 1290px;
+
+  min-height: 0;
+
+  aspect-ratio: 3 / 2;
+
+  margin: 0 auto;
+
+  background-image:
+    linear-gradient(
+      rgba(15, 10, 45, 0.15),
+      rgba(15, 10, 45, 0.25)
+    ),
+    url("images/cover_bg.png");
+
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #ffffff;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#title-screen h1 {
+  margin: 0;
+
+  font-size: clamp(60px, 8vw, 110px);
+  font-weight: 700;
+
+  text-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.65),
+    0 0 14px rgba(0, 0, 0, 0.35);
+}
+
+
+#title-screen p {
+  margin: 18px 0 30px;
+
+  font-size: clamp(17px, 1.8vw, 25px);
+
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+
+#play-button {
+  padding: 13px 40px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #9b5de5;
+  color: #ffffff;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   INTRO SCREEN
+========================= */
+
+#intro-screen {
+  position: relative;
+
+  width: 100%;
+  max-width: 1290px;
+
+  min-height: 0;
+
+  aspect-ratio: 3 / 2;
+
+  margin: 0 auto;
+
+  background-image:
+    linear-gradient(
+      rgba(35, 18, 8, 0.10),
+      rgba(35, 18, 8, 0.20)
+    ),
+    url("images/intro_bg.png");
+
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #ffffff;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#intro-screen h2 {
+  margin: 0 0 20px;
+
+  font-size: clamp(30px, 3.5vw, 50px);
+  font-weight: 700;
+
+  text-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.75);
+}
+
+
+#intro-screen p {
+  width: min(720px, 75%);
+
+  margin: 7px auto;
+
+  font-size: clamp(17px, 1.6vw, 23px);
+  line-height: 1.5;
+
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+
+#start-button {
+  margin-top: 26px;
+
+  padding: 13px 40px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #ff4141;
+  color: #ffffff;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+/* =========================
+   ITEM SELECTION BACKGROUND
+========================= */
+
+#selection-screen,
+#final-selection-screen {
+  background-color: #ffffff;
+}
+
+/* =========================
+   TITLE + INTRO
+   CENTER ALIGN
+========================= */
+
+#title-screen,
+#intro-screen {
+  text-align: center;
+}
+
+#title-screen h1,
+#title-screen p,
+#intro-screen h2,
+#intro-screen p {
+  text-align: center;
+}
+
+#play-button,
+#start-button {
+  align-self: center;
+}
+
+/* =========================
+   FORCE CENTER ALIGN
+========================= */
+
+#title-screen h1,
+#title-screen p,
+#intro-screen h2,
+#intro-screen p {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+
+  left: auto;
+  right: auto;
+
+  align-self: center;
+}
+
+#play-button,
+#start-button {
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================
+   CONTENT WARNING
+========================= */
+
+#content-warning-popup {
+  display: none;
+}
+
+#content-warning-popup.active {
+  display: flex;
+}
+
+
+.content-warning-box {
+  position: relative;
+
+  width: min(1000px, 92vw);
+  min-height: 380px;
+
+  padding: 46px 58px;
+
+  box-sizing: border-box;
+
+  background-color: #fff7e1;
+
+  border: 4px solid #f0a24a;
+  border-radius: 24px;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+
+/* TITLE */
+
+.content-warning-box h2 {
+  margin: 0 0 35px;
+
+  color: #e58a2e;
+
+  font-size: clamp(24px, 2.6vw, 36px);
+  font-weight: 700;
+}
+
+
+/* DESCRIPTION */
+
+.content-warning-box p {
+  width: min(900px, 100%);
+
+  margin: 0 auto 40px;
+
+  color: #3a3028;
+
+  font-size: clamp(17px, 2vw, 25px);
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+
+/* CLOSE BUTTON */
+
+.content-warning-close {
+  position: absolute;
+
+  top: 18px;
+  right: 22px;
+
+  width: 46px;
+  height: 46px;
+
+  padding: 0;
+
+  border: 4px solid #e58a2e;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #e58a2e;
+
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+
+/* CONTINUE BUTTON */
+
+.content-warning-button {
+  padding: 14px 36px;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: #f0a24a;
+  color: #ffffff;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+/* =========================
+   FINAL RESULTS SCREEN
+========================= */
+
+#results-screen {
+  min-height: 100vh;
+
+  padding: 45px 30px 60px;
+
+  box-sizing: border-box;
+
+  background-color: #f7f7f7;
+  color: #111111;
+
+  text-align: center;
+}
+
+
+.results-container {
+  width: min(1100px, 94%);
+
+  margin: 0 auto;
+}
+
+
+/* TITLE */
+
+.results-title {
+  margin: 0;
+
+  font-size: 42px;
+  font-weight: 700;
+}
+
+
+.results-intro {
+  margin: 10px 0 30px;
+
+  font-size: 18px;
+}
+
+
+/* =========================
+   BEFORE / AFTER
+========================= */
+
+.results-comparison {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 22px;
+
+  margin-bottom: 38px;
+}
+
+
+.selection-result-box {
+  padding: 22px;
+
+  background-color: #ffffff;
+
+  border: 3px solid #dddddd;
+  border-radius: 20px;
+}
+
+
+.selection-result-box h2 {
+  margin: 0 0 6px;
+
+  font-size: 23px;
+  font-weight: 700;
+}
+
+
+.selection-score {
+  margin-bottom: 15px;
+
+  color: #6f35a5;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+/* 9 ITEMS */
+
+.results-item-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 9px;
+}
+
+
+.result-item-card {
+  position: relative;
+
+  min-height: 105px;
+
+  padding: 8px 6px;
+
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+
+  border: 2px solid #dddddd;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.result-item-card img {
+  width: 70px;
+  height: 70px;
+
+  object-fit: contain;
+}
+
+
+.result-item-card span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+/* RECOMMENDED */
+
+.result-item-card.recommended {
+  background-color: #eef4ff;
+
+  border-color: #7fa6f5;
+}
+
+
+.result-check {
+  position: absolute;
+
+  top: 3px;
+  right: 7px;
+
+  color: #3478f6;
+
+  font-size: 23px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   FEEDBACK
+========================= */
+
+.feedback-section {
+  margin: 24px 0;
+
+  padding: 24px 28px;
+
+  background-color: #ffffff;
+
+  border-radius: 20px;
+
+  text-align: left;
+}
+
+
+.feedback-title {
+  margin: 0 0 18px;
+
+  font-size: 22px;
+  font-weight: 700;
+}
+
+
+.recommended-title {
+  color: #3478f6;
+}
+
+
+.missed-title {
+  color: #e58a2e;
+}
+
+
+.other-title {
+  color: #666666;
+}
+
+
+.feedback-list {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+
+.feedback-item {
+  min-height: 95px;
+
+  padding: 12px 14px;
+
+  box-sizing: border-box;
+
+  background-color: #fafafa;
+
+  border: 2px solid #e3e3e3;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+}
+
+
+.feedback-item img {
+  flex-shrink: 0;
+
+  width: 65px;
+  height: 65px;
+
+  object-fit: contain;
+}
+
+
+.feedback-item-text {
+  flex: 1;
+}
+
+
+.feedback-item-name {
+  margin-bottom: 4px;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+.feedback-item-reason {
+  color: #555555;
+
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+
+/* EMPTY SECTION */
+
+.feedback-empty {
+  color: #777777;
+
+  font-size: 15px;
+}
+
+
+/* =========================
+   FINISH BUTTON
+========================= */
+
+.finish-button {
+  margin-top: 15px;
+
+  padding: 14px 45px;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: #9b5de5;
+  color: #ffffff;
+
+  font-family: "GmarketSans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   RESULT RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+
+  .results-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-list {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+.results-source {
+  margin: -15px auto 30px;
+
+  color: #777777;
+
+  font-family: "GmarketSans", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.4;
+
+  text-align: center;
+}
+
+/* =========================
+   OTHER ITEMS FEEDBACK
+========================= */
+
+.other-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wrong-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background-color: #fff0e8;
+  color: #e96f45;
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.other-items-note {
+  margin: 4px 0 20px 46px;
+
+  color: #888888;
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.4;
+}

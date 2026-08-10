@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>72 Hours</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       TITLE SCREEN
+  ========================= -->
+
+  <section
+    id="title-screen"
+    class="screen active"
+  >
+
+    <h1>72 HOURS</h1>
+
+    <p>
+      Are you prepared for the first 72 hours after an earthquake?
+    </p>
+
+    <button id="play-button">
+      PLAY
+    </button>
+
+  </section>
+
+
+
+  <!-- =========================
+       INTRO SCREEN
+  ========================= -->
+
+  <section
+    id="intro-screen"
+    class="screen"
+  >
+
+    <h2>
+      An earthquake has occurred.
+    </h2>
+
+    <p>
+      The door is blocked from the outside, so you are currently stuck in your room.
+    </p>
+
+    <p>
+      Explore the room and find clues to see how well prepared you are.
+    </p>
+
+    <button id="start-button">
+      START
+    </button>
+
+  </section>
+
+<!-- =========================
+     CONTENT WARNING
+========================= -->
+
+<div
+  id="content-warning-popup"
+  class="popup-overlay"
+>
+
+  <div class="content-warning-box">
+
+    <button
+      id="close-content-warning"
+      class="content-warning-close"
+    >
+      ×
+    </button>
+
+    <h2>
+      CONTENT WARNING
+    </h2>
+
+    <p>
+      This game contains fictional earthquake scenes
+      and a minor injury scene that some players may
+      find uncomfortable.
+    </p>
+
+    <button
+      id="content-warning-continue"
+      class="content-warning-button"
+    >
+      CONTINUE
+    </button>
+
+  </div>
+
+</div>
+
+  <!-- =========================
+       INITIAL SELECTION SCREEN
+  ========================= -->
+
+  <section
+    id="selection-screen"
+    class="screen"
+  >
+
+    <h2>
+      Prepare Your Emergency Kit
+    </h2>
+
+    <p>
+      Choose the 9 items you think are most essential.
+    </p>
+
+    <p id="selection-count">
+      0 / 9 selected
+    </p>
+
+
+<div id="item-grid">
+
+  <button class="item" data-item="Water">
+    <img src="images/water.png" alt="Water">
+    <span>Water</span>
+  </button>
+
+  <button class="item" data-item="Torch">
+    <img src="images/torch.png" alt="Torch">
+    <span>Torch</span>
+  </button>
+
+  <button class="item" data-item="Canned tuna">
+    <img src="images/canned_tuna.png" alt="Canned tuna">
+    <span>Canned tuna</span>
+  </button>
+
+  <button class="item" data-item="Radio">
+    <img src="images/radio.png" alt="Radio">
+    <span>Radio</span>
+  </button>
+
+  <button class="item" data-item="Spare batteries">
+    <img src="images/spare_batteries.png" alt="Spare batteries">
+    <span>Spare batteries</span>
+  </button>
+
+  <button class="item" data-item="Power bank">
+    <img src="images/power_bank.png" alt="Power bank">
+    <span>Power bank</span>
+  </button>
+
+  <button class="item" data-item="First aid kit">
+    <img src="images/first_aid_kit.png" alt="First aid kit">
+    <span>First aid kit</span>
+  </button>
+
+  <button class="item" data-item="Walking shoes">
+    <img src="images/walking_shoes.png" alt="Walking shoes">
+    <span>Walking shoes</span>
+  </button>
+
+  <button class="item" data-item="Warm clothing">
+    <img src="images/warm_clothes.png" alt="Warm clothing">
+    <span>Warm clothing</span>
+  </button>
+
+  <button class="item" data-item="Laptop">
+    <img src="images/laptop2.png" alt="Laptop">
+    <span>Laptop</span>
+  </button>
+
+  <button class="item" data-item="Book">
+    <img src="images/book.png" alt="Book">
+    <span>Book</span>
+  </button>
+
+  <button class="item" data-item="Umbrella">
+    <img src="images/umbrella.png" alt="Umbrella">
+    <span>Umbrella</span>
+  </button>
+
+  <button class="item" data-item="Slippers">
+    <img src="images/slippers.png" alt="Slippers">
+    <span>Slippers</span>
+  </button>
+
+  <button class="item" data-item="Milk">
+    <img src="images/milk.png" alt="Milk">
+    <span>Milk</span>
+  </button>
+
+  <button class="item" data-item="Desk lamp">
+    <img src="images/desk_lamp.png" alt="Desk lamp">
+    <span>Desk lamp</span>
+  </button>
+
+  <button class="item" data-item="Cushion">
+    <img src="images/cushion.png" alt="Cushion">
+    <span>Cushion</span>
+  </button>
+
+  <button class="item" data-item="Electric kettle">
+    <img src="images/electric_kettle.png" alt="Electric kettle">
+    <span>Electric kettle</span>
+  </button>
+
+  <button class="item" data-item="Candle">
+    <img src="images/candle.png" alt="Candle">
+    <span>Candle</span>
+  </button>
+
+  <button class="item" data-item="Eggs">
+    <img src="images/eggs.png" alt="Eggs">
+    <span>Eggs</span>
+  </button>
+
+  <button class="item" data-item="Original documents">
+    <img src="images/original_documents.png" alt="Original documents">
+    <span>Original documents</span>
+  </button>
+
+</div>
+
+
+    <button
+      id="confirm-selection"
+      disabled
+    >
+      CONFIRM
+    </button>
+
+  </section>
+
+
+
+  <!-- =========================
+       DAY 1 SCREEN
+  ========================= -->
+
+  <section
+    id="day1-screen"
+    class="screen game-screen"
+  >
+
+    <div class="game-scene">
+
+
+      <!-- BACKGROUND -->
+
+      <img
+        src="images/day1_room.png"
+        alt="Day 1 room"
+        class="scene-image"
+      >
+
+
+      <!-- CLICKABLE OBJECTS -->
+
+      <img
+        src="images/light.png"
+        alt="Ceiling light"
+        class="clue_object light"
+        data-clue="light"
+      >
+
+      <img
+        src="images/bottle.png"
+        alt="Water bottle"
+        class="clue_object bottle"
+        data-clue="bottle"
+      >
+
+      <img
+        src="images/banana.png"
+        alt="Banana"
+        class="clue_object banana"
+        data-clue="banana"
+      >
+
+
+      <!-- DAY TITLE -->
+
+      <div class="day-title">
+
+        <div class="day-number">
+          DAY 1
+        </div>
+
+        <div class="day-theme">
+          Look After Yourself
+        </div>
+
+      </div>
+
+
+      <!-- INSTRUCTION -->
+
+      <div class="instruction-box">
+
+        Find 3 clues<br>
+        to look after<br>
+        yourself.
+
+      </div>
+
+
+      <!-- STATUS PANEL -->
+
+      <div class="clue-panel">
+
+        <div class="clue-title">
+          STATUS
+        </div>
+
+        <div
+          class="clue-slot"
+          id="day1-slot-1"
+        ></div>
+
+        <div
+          class="clue-slot"
+          id="day1-slot-2"
+        ></div>
+
+        <div
+          class="clue-slot"
+          id="day1-slot-3"
+        ></div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- DAY 1 COMPLETE POPUP -->
+
+    <div
+      id="day1-complete-popup"
+      class="popup-overlay"
+    >
+
+      <div class="day-complete-card">
+
+        <div class="day-complete-title">
+          DAY 1 COMPLETE
+        </div>
+
+        <div class="day-complete-text">
+          You checked all 3 clues.
+        </div>
+
+        <button
+          id="day2-button"
+          class="day-next-button"
+        >
+          CONTINUE TO DAY 2
+        </button>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =========================
+       DAY 2 SCREEN
+  ========================= -->
+
+  <section
+    id="day2-screen"
+    class="screen game-screen"
+  >
+
+    <div class="game-scene">
+
+
+      <!-- BACKGROUND -->
+
+      <img
+        src="images/day2_room.png"
+        alt="Day 2 room"
+        class="scene-image"
+      >
+
+
+      <!-- CLICKABLE OBJECTS -->
+
+      <img
+        src="images/laptop.png"
+        alt="Laptop"
+        class="clue_object day2-laptop"
+        data-clue="laptop"
+      >
+
+      <img
+        src="images/phone.png"
+        alt="Phone"
+        class="clue_object day2-phone"
+        data-clue="phone"
+      >
+
+      <img
+        src="images/power_outlet.png"
+        alt="Power outlet"
+        class="clue_object day2-power-outlet"
+        data-clue="powerOutlet"
+      >
+
+
+      <!-- DAY TITLE -->
+
+      <div class="day-title day2-title">
+
+        <div class="day-number">
+          DAY 2
+        </div>
+
+        <div class="day-theme">
+          Look After Your Connections
+        </div>
+
+      </div>
+
+
+      <!-- INSTRUCTION -->
+
+      <div class="instruction-box day2-instruction">
+
+        Find 3 clues<br>
+        to look after<br>
+        your connections.
+
+      </div>
+
+
+      <!-- STATUS PANEL -->
+
+      <div class="clue-panel day2-clue-panel">
+
+        <div class="clue-title day2-clue-title">
+          STATUS
+        </div>
+
+        <div
+          class="clue-slot day2-clue-slot"
+          id="day2-slot-1"
+        ></div>
+
+        <div
+          class="clue-slot day2-clue-slot"
+          id="day2-slot-2"
+        ></div>
+
+        <div
+          class="clue-slot day2-clue-slot"
+          id="day2-slot-3"
+        ></div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- DAY 2 COMPLETE POPUP -->
+
+    <div
+      id="day2-complete-popup"
+      class="popup-overlay"
+    >
+
+      <div class="day-complete-card">
+
+        <div class="day-complete-title">
+          DAY 2 COMPLETE
+        </div>
+
+        <div class="day-complete-text">
+          You checked all 3 clues.
+        </div>
+
+        <button
+          id="day3-button"
+          class="day-next-button"
+        >
+          CONTINUE TO DAY 3
+        </button>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =========================
+       SHARED CLUE POPUP
+  ========================= -->
+
+  <div
+    id="clue-popup"
+    class="popup-overlay"
+  >
+
+    <div class="popup-card">
+
+      <img
+        id="clue-popup-image"
+        src="images/popup_light.png"
+        alt="Clue information"
+        class="popup-image"
+      >
+
+      <button
+        id="check-kit-button"
+        class="check-kit-button"
+      >
+        CHECK MY KIT
+      </button>
+
+      <button
+        id="close-clue-popup"
+        class="popup-close"
+      >
+        ×
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       SHARED KIT POPUP
+  ========================= -->
+
+  <div
+    id="kit-popup"
+    class="popup-overlay"
+  >
+
+    <div class="kit-popup-card">
+
+      <h2>
+        MY EMERGENCY KIT
+      </h2>
+
+      <p class="kit-instruction">
+
+        Find the
+
+        <span
+          id="kit-target-item"
+          class="target-item"
+        >
+          torch
+        </span>
+
+      </p>
+
+
+      <div id="kit-item-grid"></div>
+
+
+      <button
+        id="not-in-kit-button"
+        class="not-in-kit-button"
+      >
+        NOT IN MY KIT
+      </button>
+
+
+      <button
+        id="close-kit-popup"
+        class="popup-close"
+      >
+        ×
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       SHARED RESULT POPUP
+  ========================= -->
+
+  <div
+    id="result-popup"
+    class="popup-overlay"
+  >
+
+    <div class="result-card">
+
+      <img
+        id="result-item-image"
+        src="images/torch.png"
+        alt="Result item"
+        class="result-item-image"
+      >
+
+      <div
+        id="result-text"
+        class="result-text"
+      >
+        PREPARED
+      </div>
+
+      <button
+        id="result-continue-button"
+        class="result-continue-button"
+      >
+        CONTINUE
+      </button>
+
+    </div>
+
+  </div>
+
+<!-- =========================
+     DAY 3 SCREEN
+========================= -->
+
+<section id="day3-screen" class="screen game-screen">
+
+  <div class="game-scene day3-scene">
+
+    <!-- BACKGROUND -->
+    <img
+      src="images/day3_room.png"
+      alt="Day 3 room"
+      class="scene-image"
+    >
+
+
+    <!-- CLICKABLE OBJECTS -->
+
+    <img
+  src="images/glass.png"
+  alt="Broken glass"
+  class="clue_object day3-glass"
+  data-clue="glass"
+>
+
+<img
+  src="images/tree.png"
+  alt="Tree"
+  class="clue_object day3-tree"
+  data-clue="tree"
+>
+
+<img
+  src="images/neighbour.png"
+  alt="Injured neighbour"
+  class="clue_object day3-neighbour"
+  data-clue="neighbour"
+>
+
+
+    <!-- DAY 3 TITLE -->
+
+    <div class="day-title day3-title">
+
+      <div class="day-number">
+        DAY 3
+      </div>
+
+      <div class="day-theme">
+        Look After Your Neighbour
+      </div>
+
+    </div>
+
+
+    <!-- INSTRUCTION -->
+
+    <div class="instruction-box day3-instruction">
+      Find 3 clues<br>
+      to look after<br>
+      your neighbour.
+    </div>
+
+
+    <!-- STATUS -->
+
+<div class="clue-panel day3-panel">
+
+  <div class="clue-title day3-clue-title">
+    STATUS
+  </div>
+
+  <div class="clue-slot day3-clue-slot" id="day3-slot-1"></div>
+
+<div class="clue-slot day3-clue-slot" id="day3-slot-2"></div>
+
+<div class="clue-slot day3-clue-slot" id="day3-slot-3"></div>
+
+</div>
+
+<!-- DAY 3 COMPLETE POPUP -->
+
+<div
+  id="day3-complete-popup"
+  class="popup-overlay"
+>
+
+  <div class="day-complete-card">
+
+    <div class="day-complete-title">
+      DAY 3 COMPLETE
+    </div>
+
+    <div class="day-complete-text">
+      You checked all 3 clues.
+    </div>
+
+    <div class="day-complete-text">
+      <div class="day-complete-text rewind-text">
+  Let’s <span class="rewind-highlight">rewind three days</span> and prepare again!
+</div>
+    </div>
+
+    <button
+      id="final-select-button"
+      class="day-next-button"
+    >
+      SELECT ITEMS
+    </button>
+
+  </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================
+     FINAL RESULTS SCREEN
+========================= -->
+
+<section
+  id="results-screen"
+  class="screen"
+>
+
+  <div class="results-container">
+
+    <h1 class="results-title">
+      YOUR RESULTS
+    </h1>
+
+    <p class="results-intro">
+      See how your emergency kit changed after the 72-hour scenario.
+    </p>
+
+<p class="results-source">
+  The essential items in this game are based on New Zealand Get Ready emergency preparedness guidance.
+</p>
+
+
+    <!-- BEFORE / AFTER -->
+
+    <div class="results-comparison">
+
+      <div class="selection-result-box">
+
+        <h2>
+          BEFORE PLAYING
+        </h2>
+
+        <div
+          id="before-score"
+          class="selection-score"
+        ></div>
+
+        <div
+          id="before-results"
+          class="results-item-grid"
+        ></div>
+
+      </div>
+
+
+      <div class="selection-result-box">
+
+        <h2>
+          AFTER PLAYING
+        </h2>
+
+        <div
+          id="after-score"
+          class="selection-score"
+        ></div>
+
+        <div
+          id="after-results"
+          class="results-item-grid"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FEEDBACK -->
+
+    <div class="feedback-section">
+
+      <h2 class="feedback-title recommended-title">
+        ESSENTIAL ITEMS YOU SELECTED
+      </h2>
+
+      <div
+        id="recommended-selected"
+        class="feedback-list"
+      ></div>
+
+    </div>
+
+
+    <div class="feedback-section">
+
+      <h2 class="feedback-title missed-title">
+        ESSENTIAL ITEMS YOU MISSED
+      </h2>
+
+      <div
+        id="recommended-missed"
+        class="feedback-list"
+      ></div>
+
+    </div>
+
+
+    <div class="feedback-section other-feedback-section">
+
+  <h2 class="feedback-title other-title">
+    <span class="wrong-mark">✕</span>
+    OTHER ITEMS YOU SELECTED
+  </h2>
+
+  <p class="other-items-note">
+    These items are not essential for your emergency kit.
+  </p>
+
+  <div
+    id="other-selected"
+    class="feedback-list"
+  ></div>
+
+</div>
+
+
+    <button
+      id="finish-button"
+      class="finish-button"
+    >
+      FINISH
+    </button>
+
+  </div>
+
+</section>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script src="script.js"></script>
+
+
+</body>
+
+</html>
