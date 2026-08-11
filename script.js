@@ -2210,15 +2210,19 @@ function showFinalResults() {
   // =========================
 
   const otherItems =
-    finalSelection.filter(
-      function (itemName) {
+  [
+    ...initialSelection,
+    ...finalSelection
+  ].filter(
+    function (itemName, index, array) {
 
-        return !essentialItems.includes(
-          itemName
-        );
+      return (
+        !essentialItems.includes(itemName) &&
+        array.indexOf(itemName) === index
+      );
 
-      }
-    );
+    }
+  );
 
 
   otherItems.forEach(
