@@ -23,7 +23,8 @@ const day3Screen =
 const resultsScreen =
   document.getElementById("results-screen");
 
-
+const endingScreen =
+  document.getElementById("ending-screen");
 
 // =========================
 // BUTTONS
@@ -70,6 +71,75 @@ let selectionMode =
 // ITEMS ALREADY USED DURING GAME
 
 let usedItems = [];
+
+
+
+// =========================
+// SOUNDS
+// =========================
+
+const buttonSound =
+  new Audio("sound/button.mp3");
+buttonSound.volume = 0.3;
+
+const hintClickSound =
+  new Audio("sound/hint_click.mp3");
+hintClickSound.volume = 0.3;
+
+const itemClickSound =
+  new Audio("sound/item_click.mp3");
+itemClickSound.volume = 0.15;
+
+const itemSelectSound =
+  new Audio("sound/item_select.mp3");
+itemSelectSound.volume = 0.2;
+
+const rightItemSound =
+  new Audio("sound/right_item.mp3");
+rightItemSound.volume = 0.2;
+
+const wrongItemSound =
+  new Audio("sound/wrong_item.mp3");
+wrongItemSound.volume = 0.1;
+
+const preparedSound =
+  new Audio("sound/prepared.mp3");
+preparedSound.volume = 0.2;
+
+const unpreparedSound =
+  new Audio("sound/unprepared.mp3");
+unpreparedSound.volume = 0.2;
+
+const nextSceneSound =
+  new Audio("sound/next_scene.mp3");
+nextSceneSound.volume = 0.3;
+
+const finalSound =
+  new Audio("sound/final.mp3");
+finalSound.volume = 0.2;
+
+const endingSound =
+  new Audio("sound/ending.mp3");
+endingSound.loop = true;
+endingSound.volume = 0.3;
+
+const windySound =
+  new Audio("sound/windy.mp3");
+windySound.loop = true;
+windySound.volume = 0.2;
+
+
+// PLAY SOUND FROM THE START EACH TIME
+
+function playSound(sound) {
+
+  sound.currentTime = 0;
+
+  sound.play().catch(function () {
+    // Ignore browser autoplay errors
+  });
+
+}
 
 
 
@@ -125,27 +195,6 @@ function shuffleItemGrid() {
 
 
 // =========================
-// TITLE → INTRO
-// =========================
-
-playButton.addEventListener(
-  "click",
-  function () {
-
-    titleScreen.classList.remove(
-      "active"
-    );
-
-    introScreen.classList.add(
-      "active"
-    );
-
-  }
-);
-
-
-
-// =========================
 // CONTENT WARNING
 // =========================
 
@@ -167,10 +216,10 @@ const closeContentWarning =
 
 
 // =========================
-// INTRO → CONTENT WARNING
+// TITLE → CONTENT WARNING
 // =========================
 
-startButton.addEventListener(
+playButton.addEventListener(
   "click",
   function () {
 
@@ -201,8 +250,7 @@ closeContentWarning.addEventListener(
 
 
 // =========================
-// CONTENT WARNING
-// → INITIAL SELECTION
+// CONTENT WARNING → INTRO
 // =========================
 
 contentWarningContinue.addEventListener(
@@ -213,17 +261,35 @@ contentWarningContinue.addEventListener(
       "active"
     );
 
+    titleScreen.classList.remove(
+      "active"
+    );
+
+    introScreen.classList.add(
+      "active"
+    );
+
+  }
+);
+
+
+
+// =========================
+// INTRO → INITIAL SELECTION
+// =========================
+
+startButton.addEventListener(
+  "click",
+  function () {
+
     introScreen.classList.remove(
       "active"
     );
 
-
     selectionMode =
       "initial";
 
-
     shuffleItemGrid();
-
 
     selectionScreen.classList.add(
       "active"
@@ -281,6 +347,11 @@ itemButtons.forEach(function (button) {
           "selected"
         );
 
+
+        playSound(
+          itemSelectSound
+        );
+
       }
 
 
@@ -302,6 +373,11 @@ itemButtons.forEach(function (button) {
 
           button.classList.add(
             "selected"
+          );
+
+
+          playSound(
+            itemSelectSound
           );
 
         }
@@ -377,6 +453,11 @@ confirmButton.addEventListener(
 
       resultsScreen.classList.add(
         "active"
+      );
+
+
+      playSound(
+        finalSound
       );
 
     }
@@ -781,6 +862,262 @@ const day3Clues = {
 
 };
 
+
+
+// =========================
+// HINT TEXT
+// =========================
+
+const hintData = {
+
+  day1: [
+    {
+      clue: "light",
+      text:
+        "It's getting dark. I need to turn on the light."
+    },
+
+    {
+      clue: "bottle",
+      text:
+        "I'm really thirsty."
+    },
+
+    {
+      clue: "banana",
+      text:
+        "I haven't eaten all day. Is there anything to eat in here?"
+    }
+  ],
+
+
+  day2: [
+    {
+      clue: "laptop",
+      text:
+        "I wonder what's happening outside. I need some news."
+    },
+
+    {
+      clue: "phone",
+      text:
+        "I need to contact my family..."
+    },
+
+    {
+      clue: "powerOutlet",
+      text:
+        "I need power to use some of my essential supplies."
+    }
+  ],
+
+
+  day3: [
+    {
+      clue: "neighbour",
+      text:
+        "It looks like someone is outside."
+    },
+
+    {
+      clue: "tree",
+      text:
+        "It's really windy outside. Leaves are blowing everywhere."
+    },
+
+    {
+      clue: "glass",
+      text:
+        "I should be careful where I step."
+    }
+  ]
+
+};
+
+
+
+// =========================
+// HINT BUTTONS
+// =========================
+
+const hintWraps =
+  document.querySelectorAll(
+    ".hint-wrap"
+  );
+
+
+hintWraps.forEach(
+  function (hintWrap) {
+
+    const button =
+      hintWrap.querySelector(
+        ".hint-button"
+      );
+
+    const hintText =
+      hintWrap.querySelector(
+        ".hint-text"
+      );
+
+    const day =
+      hintWrap.dataset.day;
+
+    let hintTimer = null;
+
+
+    button.addEventListener(
+  "click",
+  function () {
+
+    playSound(
+      hintClickSound
+    );
+
+
+    // IF ALREADY OPEN, CLOSE IT
+
+    if (
+      hintWrap.classList.contains(
+        "open"
+      )
+    ) {
+
+      hintWrap.classList.remove(
+        "open"
+      );
+
+
+      if (hintTimer) {
+
+        clearTimeout(
+          hintTimer
+        );
+
+        hintTimer = null;
+
+      }
+
+
+      return;
+
+    }
+
+
+    let clueGroup;
+
+
+
+        // DAY 1
+
+        if (day === "day1") {
+
+          clueGroup =
+            day1Clues;
+
+        }
+
+
+        // DAY 2
+
+        else if (day === "day2") {
+
+          clueGroup =
+            day2Clues;
+
+        }
+
+
+        // DAY 3
+
+        else {
+
+          clueGroup =
+            day3Clues;
+
+        }
+
+
+
+        // FIND FIRST UNSOLVED CLUE
+
+        const nextHint =
+          hintData[day].find(
+            function (hint) {
+
+              return (
+                !clueGroup[
+                  hint.clue
+                ].completed
+              );
+
+            }
+          );
+
+
+
+        // ALL 3 ARE COMPLETE
+
+        if (!nextHint) {
+
+          hintText.textContent =
+            "You've found all 3 clues.";
+
+        }
+
+        else {
+
+          hintText.textContent =
+            nextHint.text;
+
+        }
+
+
+        hintWrap.style.setProperty(
+          "--hint-width",
+          (hintText.scrollWidth + 8) + "px"
+        );
+
+
+        // OPEN HINT
+
+        hintWrap.classList.add(
+          "open"
+        );
+
+
+        // RESET OLD TIMER
+
+        if (hintTimer) {
+
+          clearTimeout(
+            hintTimer
+          );
+
+        }
+
+
+        // CLOSE AFTER 5 SECONDS
+
+        hintTimer =
+          setTimeout(
+            function () {
+
+              hintWrap.classList.remove(
+                "open"
+              );
+
+              hintTimer = null;
+
+            },
+            5000
+          );
+
+      }
+    );
+
+  }
+);
+
 // =========================
 // PRELOAD POPUP IMAGES
 // =========================
@@ -811,8 +1148,12 @@ function preloadGameImages() {
 
 }
 
+
 // 실행
+
 preloadGameImages();
+
+
 
 // =========================
 // CURRENT CLUE
@@ -994,6 +1335,42 @@ const finishButton =
 
 
 // =========================
+// GENERAL BUTTON SOUND
+// =========================
+
+[
+  playButton,
+  startButton,
+  confirmButton,
+  contentWarningContinue,
+  closeContentWarning,
+  checkKitButton,
+  closeCluePopup,
+  closeKitPopup,
+  resultContinueButton,
+  finishButton
+].forEach(function (button) {
+
+  if (button) {
+
+    button.addEventListener(
+      "click",
+      function () {
+
+        playSound(
+          buttonSound
+        );
+
+      }
+    );
+
+  }
+
+});
+
+
+
+// =========================
 // POPUP THEME
 // =========================
 
@@ -1070,6 +1447,11 @@ Object.keys(
       }
 
 
+      playSound(
+        itemClickSound
+      );
+
+
       currentClueName =
         clueName;
 
@@ -1130,6 +1512,11 @@ Object.keys(
       }
 
 
+      playSound(
+        itemClickSound
+      );
+
+
       currentClueName =
         clueName;
 
@@ -1188,6 +1575,11 @@ Object.keys(
         return;
 
       }
+
+
+      playSound(
+        itemClickSound
+      );
 
 
       currentClueName =
@@ -1414,6 +1806,10 @@ kitItemGrid.addEventListener(
       clue.requiredItem
     ) {
 
+      playSound(
+        rightItemSound
+      );
+
 
       if (
         !usedItems.includes(
@@ -1467,6 +1863,18 @@ kitItemGrid.addEventListener(
         "active"
       );
 
+
+      setTimeout(
+        function () {
+
+          playSound(
+            preparedSound
+          );
+
+        },
+        300
+      );
+
     }
 
 
@@ -1476,6 +1884,11 @@ kitItemGrid.addEventListener(
     // =========================
 
     else {
+
+      playSound(
+        wrongItemSound
+      );
+
 
       showWrongBubble(
         itemButton
@@ -1541,10 +1954,13 @@ notInKitButton.addEventListener(
       "active"
     );
 
+
+    playSound(
+      unpreparedSound
+    );
+
   }
 );
-
-
 
 // =========================
 // RESULT → CHECK DAY COMPLETE
@@ -1557,7 +1973,6 @@ resultContinueButton.addEventListener(
     resultPopup.classList.remove(
       "active"
     );
-
 
 
     // DAY 1
@@ -1575,10 +1990,13 @@ resultContinueButton.addEventListener(
           .classList
           .add("active");
 
+        playSound(
+          nextSceneSound
+        );
+
       }
 
     }
-
 
 
     // DAY 2
@@ -1596,10 +2014,13 @@ resultContinueButton.addEventListener(
           .classList
           .add("active");
 
+        playSound(
+          nextSceneSound
+        );
+
       }
 
     }
-
 
 
     // DAY 3
@@ -1617,14 +2038,16 @@ resultContinueButton.addEventListener(
           .classList
           .add("active");
 
+        playSound(
+          nextSceneSound
+        );
+
       }
 
     }
 
   }
 );
-
-
 
 // =========================
 // DAY 1 → DAY 2
@@ -1633,6 +2056,7 @@ resultContinueButton.addEventListener(
 day2Button.addEventListener(
   "click",
   function () {
+
 
     day1CompletePopup
       .classList
@@ -1661,6 +2085,7 @@ day3Button.addEventListener(
   "click",
   function () {
 
+
     day2CompletePopup
       .classList
       .remove("active");
@@ -1675,6 +2100,13 @@ day3Button.addEventListener(
       "active"
     );
 
+
+    windySound.currentTime = 0;
+
+    windySound.play().catch(function () {
+      // Ignore browser autoplay errors
+    });
+
   }
 );
 
@@ -1688,6 +2120,9 @@ day3Button.addEventListener(
 finalSelectButton.addEventListener(
   "click",
   function () {
+
+    windySound.pause();
+    windySound.currentTime = 0;
 
 
     selectionMode =
@@ -2114,6 +2549,64 @@ function showFinalResults() {
       }
     );
 
+// =========================
+// RESULT PRAISE
+// =========================
+
+const resultPraiseTitle =
+  document.getElementById(
+    "result-praise-title"
+  );
+
+const resultPraiseText =
+  document.getElementById(
+    "result-praise-text"
+  );
+
+
+if (
+  finalRecommended.length <= 4
+) {
+
+  resultPraiseTitle.textContent =
+    "💡 KEEP GOING! 💡";
+
+  resultPraiseTitle.className =
+    "result-praise-title keep-going";
+
+  resultPraiseText.textContent =
+    "There’s still more to learn about being prepared.";
+
+}
+
+else if (
+  finalRecommended.length <= 6
+) {
+
+  resultPraiseTitle.textContent =
+    "⭐ NOT BAD! ⭐";
+
+  resultPraiseTitle.className =
+    "result-praise-title not-bad";
+
+  resultPraiseText.textContent =
+    "You’re getting the essentials covered.";
+
+}
+
+else {
+
+  resultPraiseTitle.textContent =
+    "🎉 EXCELLENT! 🎉";
+
+  resultPraiseTitle.className =
+    "result-praise-title excellent";
+
+  resultPraiseText.textContent =
+    "You’ve got most of the essentials covered.";
+
+}
+
 
   afterScore.textContent =
     finalRecommended.length +
@@ -2471,3 +2964,38 @@ function createFeedbackItem(
   );
 
 }
+
+// =========================
+// RESULTS → ENDING
+// =========================
+
+finishButton.addEventListener(
+  "click",
+  function () {
+
+    resultsScreen.classList.remove(
+      "active"
+    );
+
+    endingScreen.classList.add(
+      "active"
+    );
+
+
+    endingSound.currentTime = 0;
+
+    endingSound.play().catch(
+      function () {
+        // Ignore browser autoplay errors
+      }
+    );
+
+
+    window.scrollTo(
+      0,
+      0
+    );
+
+  }
+);
+

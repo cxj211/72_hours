@@ -260,6 +260,8 @@
     <div class="game-scene">
 
 
+      <div class="scene-stage">
+
       <!-- BACKGROUND -->
 
       <img
@@ -291,6 +293,9 @@
         class="clue_object banana"
         data-clue="banana"
       >
+
+
+      </div>
 
 
       <!-- DAY TITLE -->
@@ -347,6 +352,20 @@
 
     </div>
 
+    <!-- HINT -->
+
+<div class="hint-wrap" data-day="day1">
+
+  <button class="hint-button">
+    HINT
+  </button>
+
+  <div class="hint-scroll">
+    <span class="hint-text"></span>
+  </div>
+
+</div>
+
 
     <!-- DAY 1 COMPLETE POPUP -->
 
@@ -393,6 +412,8 @@
     <div class="game-scene">
 
 
+      <div class="scene-stage">
+
       <!-- BACKGROUND -->
 
       <img
@@ -424,6 +445,9 @@
         class="clue_object day2-power-outlet"
         data-clue="powerOutlet"
       >
+
+
+      </div>
 
 
       <!-- DAY TITLE -->
@@ -480,6 +504,17 @@
 
     </div>
 
+<div class="hint-wrap" data-day="day2">
+
+  <button class="hint-button">
+    HINT
+  </button>
+
+  <div class="hint-scroll">
+    <span class="hint-text"></span>
+  </div>
+
+</div>
 
     <!-- DAY 2 COMPLETE POPUP -->
 
@@ -649,6 +684,8 @@
 
   <div class="game-scene day3-scene">
 
+    <div class="scene-stage">
+
     <!-- BACKGROUND -->
     <img
       src="images/day3_room.png"
@@ -679,6 +716,9 @@
   class="clue_object day3-neighbour"
   data-clue="neighbour"
 >
+
+
+    </div>
 
 
     <!-- DAY 3 TITLE -->
@@ -720,6 +760,21 @@
 <div class="clue-slot day3-clue-slot" id="day3-slot-3"></div>
 
 </div>
+
+  </div>
+
+<div class="hint-wrap" data-day="day3">
+
+  <button class="hint-button">
+    HINT
+  </button>
+
+  <div class="hint-scroll">
+    <span class="hint-text"></span>
+  </div>
+
+</div>
+
 
 <!-- DAY 3 COMPLETE POPUP -->
 
@@ -780,6 +835,16 @@
 <p class="results-source">
   The essential items in this game are based on New Zealand Get Ready emergency preparedness guidance.
 </p>
+
+<!-- RESULT PRAISE -->
+
+<div id="result-praise" class="result-praise">
+
+  <div id="result-praise-title" class="result-praise-title"></div>
+
+  <div id="result-praise-text" class="result-praise-text"></div>
+
+</div>
 
 
     <!-- BEFORE / AFTER -->
@@ -886,6 +951,29 @@
 
 </section>
 
+<!-- =========================
+     ENDING SCREEN
+========================= -->
+
+<section
+  id="ending-screen"
+  class="screen"
+>
+
+  <div class="ending-content">
+
+    <h1>
+  THANK YOU<br>
+  FOR PLAYING!
+  </h1>
+
+    <p>
+       You have completed 72 Hours
+    </p>
+
+  </div>
+
+</section>
 
   <!-- =========================
        JAVASCRIPT
