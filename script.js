@@ -907,30 +907,30 @@ const hintData = {
     {
       clue: "powerOutlet",
       text:
-        "I need power to use some of my essential supplies."
+        "I need to keep my communication devices charged."
     }
   ],
 
 
   day3: [
-    {
-      clue: "neighbour",
-      text:
-        "It looks like someone is outside."
-    },
+  {
+    clue: "glass",
+    text:
+      "I should be careful where I step."
+  },
 
-    {
-      clue: "tree",
-      text:
-        "It's really windy outside. Leaves are blowing everywhere."
-    },
+  {
+    clue: "tree",
+    text:
+      "It's really windy outside. Leaves are blowing everywhere."
+  },
 
-    {
-      clue: "glass",
-      text:
-        "I should be careful where I step."
-    }
-  ]
+  {
+    clue: "neighbour",
+    text:
+      "Something seems wrong with my neighbour."
+  }
+]
 
 };
 
@@ -1215,11 +1215,6 @@ const closeKitPopup =
 const notInKitButton =
   document.getElementById(
     "not-in-kit-button"
-  );
-
-const kitTargetItem =
-  document.getElementById(
-    "kit-target-item"
   );
 
 
@@ -1650,12 +1645,7 @@ checkKitButton.addEventListener(
     setPopupTheme(
       kitPopup
     );
-
-
-    kitTargetItem.textContent =
-      clue.requiredItem
-        .toLowerCase();
-
+    
 
     kitItemGrid.innerHTML =
       "";

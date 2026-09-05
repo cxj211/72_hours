@@ -531,6 +531,10 @@ button {
   cursor: pointer;
 }
 
+#kit-popup .popup-close {
+  top: 2%;
+  right: 2.5%;
+}
 
 /* =========================
    KIT POPUP
@@ -539,8 +543,8 @@ button {
 .kit-popup-card {
   position: relative;
 
-  width: 62%;
-  max-width: 760px;
+  width: 55%;
+  max-width: 710px;
 
   padding: 22px 28px 24px;
 
@@ -558,7 +562,7 @@ button {
 /* TITLE */
 
 .kit-popup-card h2 {
-  margin: 0 0 19px;
+  margin: 10px 0 20px;
 
   font-size: clamp(22px, 2.5vw, 36px);
   font-weight: 700;
@@ -869,6 +873,7 @@ button {
 }
 
 .day-complete-title {
+  margin-top: 10px;
   font-size: clamp(26px, 3vw, 42px);
   font-weight: 700;
 }
@@ -881,9 +886,9 @@ button {
 }
 
 .day-next-button {
-  margin-top: 30px;
+  margin-top: 35px;
 
-  padding: 13px 28px;
+  padding: 16px 28px;
 
   border: none;
   border-radius: 10px;
@@ -991,6 +996,7 @@ button {
 ========================= */
 
 #kit-popup.day2-popup .kit-popup-card {
+  background-color: #fce8f1;
   border-color: #f08bb7;
 }
 
