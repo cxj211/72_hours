@@ -899,12 +899,6 @@ const hintData = {
 
   day1: [
     {
-      clue: "light",
-      text:
-        "It's getting dark. I need to turn on the light."
-    },
-
-    {
       clue: "bottle",
       text:
         "I'm really thirsty."
@@ -914,6 +908,12 @@ const hintData = {
       clue: "banana",
       text:
         "I haven't eaten all day. Is there anything to eat in here?"
+    },
+
+    {
+      clue: "light",
+      text:
+        "It's getting dark. I need to turn on the light."
     }
   ],
 
