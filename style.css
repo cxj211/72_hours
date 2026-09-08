@@ -955,10 +955,10 @@ button {
 ========================= */
 
 .day2-laptop {
-  width: 25%;
+  width: 30%;
 
-  top: 30%;
-  left: 39%;
+  top: 22%;
+  left: 37%;
 }
 
 .day2-phone {
@@ -969,10 +969,10 @@ button {
 }
 
 .day2-power-outlet {
-  width: 9%;
+  width: 8.7%;
 
-  top: 24%;
-  left: 26%;
+  top: 26%;
+  left: 25%;
 }
 
 
@@ -1108,7 +1108,7 @@ button {
   top: 80%;
   left: 35%;
 
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 .day3-tree {
@@ -2290,5 +2290,519 @@ body {
 
 #day3-screen .hint-scroll {
   border-color: #7fa6f5;
+}
+
+
+/* DUST */
+
+.dust-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.dust-layer span {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  background: rgba(255, 245, 220, 0.11);
+  border-radius: 50%;
+
+  pointer-events: none;
+  will-change: transform;
+
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+
+/* -------------------------
+   STARTING POSITIONS
+------------------------- */
+
+.dust-layer span:nth-child(1) {
+  left: 5%;
+  top: 15%;
+  animation: dustPath1 65s linear infinite;
+  animation-delay: -21s;
+}
+
+.dust-layer span:nth-child(2) {
+  left: 16%;
+  top: 64%;
+  animation: dustPath2 72s linear infinite;
+  animation-delay: -41s;
+}
+
+.dust-layer span:nth-child(3) {
+  left: 27%;
+  top: 33%;
+  animation: dustPath3 61s linear infinite;
+  animation-delay: -12s;
+}
+
+.dust-layer span:nth-child(4) {
+  left: 39%;
+  top: 81%;
+  animation: dustPath4 78s linear infinite;
+  animation-delay: -55s;
+}
+
+.dust-layer span:nth-child(5) {
+  left: 51%;
+  top: 19%;
+  animation: dustPath5 68s linear infinite;
+  animation-delay: -37s;
+}
+
+.dust-layer span:nth-child(6) {
+  left: 63%;
+  top: 51%;
+  animation: dustPath6 75s linear infinite;
+  animation-delay: -18s;
+}
+
+.dust-layer span:nth-child(7) {
+  left: 75%;
+  top: 72%;
+  animation: dustPath1 82s linear infinite;
+  animation-delay: -63s;
+}
+
+.dust-layer span:nth-child(8) {
+  left: 87%;
+  top: 27%;
+  animation: dustPath2 67s linear infinite;
+  animation-delay: -28s;
+}
+
+.dust-layer span:nth-child(9) {
+  left: 94%;
+  top: 58%;
+  animation: dustPath3 74s linear infinite;
+  animation-delay: -49s;
+}
+
+.dust-layer span:nth-child(10) {
+  left: 11%;
+  top: 43%;
+  animation: dustPath4 70s linear infinite;
+  animation-delay: -9s;
+}
+
+.dust-layer span:nth-child(11) {
+  left: 23%;
+  top: 9%;
+  animation: dustPath5 80s linear infinite;
+  animation-delay: -58s;
+}
+
+.dust-layer span:nth-child(12) {
+  left: 34%;
+  top: 88%;
+  animation: dustPath6 63s linear infinite;
+  animation-delay: -32s;
+}
+
+.dust-layer span:nth-child(13) {
+  left: 46%;
+  top: 37%;
+  animation: dustPath2 76s linear infinite;
+  animation-delay: -52s;
+}
+
+.dust-layer span:nth-child(14) {
+  left: 58%;
+  top: 67%;
+  animation: dustPath3 69s linear infinite;
+  animation-delay: -23s;
+}
+
+.dust-layer span:nth-child(15) {
+  left: 69%;
+  top: 13%;
+  animation: dustPath4 84s linear infinite;
+  animation-delay: -71s;
+}
+
+.dust-layer span:nth-child(16) {
+  left: 81%;
+  top: 46%;
+  animation: dustPath5 66s linear infinite;
+  animation-delay: -39s;
+}
+
+.dust-layer span:nth-child(17) {
+  left: 92%;
+  top: 83%;
+  animation: dustPath6 73s linear infinite;
+  animation-delay: -17s;
+}
+
+.dust-layer span:nth-child(18) {
+  left: 8%;
+  top: 75%;
+  animation: dustPath3 79s linear infinite;
+  animation-delay: -62s;
+}
+
+.dust-layer span:nth-child(19) {
+  left: 31%;
+  top: 56%;
+  animation: dustPath1 71s linear infinite;
+  animation-delay: -44s;
+}
+
+.dust-layer span:nth-child(20) {
+  left: 43%;
+  top: 24%;
+  animation: dustPath6 81s linear infinite;
+  animation-delay: -27s;
+}
+
+.dust-layer span:nth-child(21) {
+  left: 56%;
+  top: 91%;
+  animation: dustPath5 64s linear infinite;
+  animation-delay: -51s;
+}
+
+.dust-layer span:nth-child(22) {
+  left: 67%;
+  top: 42%;
+  animation: dustPath2 77s linear infinite;
+  animation-delay: -14s;
+}
+
+.dust-layer span:nth-child(23) {
+  left: 78%;
+  top: 8%;
+  animation: dustPath4 85s linear infinite;
+  animation-delay: -69s;
+}
+
+.dust-layer span:nth-child(24) {
+  left: 89%;
+  top: 69%;
+  animation: dustPath1 74s linear infinite;
+  animation-delay: -35s;
+}
+
+.dust-layer span:nth-child(25) {
+  left: 14%;
+  top: 25%;
+  animation: dustPath4 77s linear infinite;
+  animation-delay: -31s;
+}
+
+.dust-layer span:nth-child(26) {
+  left: 25%;
+  top: 73%;
+  animation: dustPath2 69s linear infinite;
+  animation-delay: -47s;
+}
+
+.dust-layer span:nth-child(27) {
+  left: 37%;
+  top: 17%;
+  animation: dustPath6 82s linear infinite;
+  animation-delay: -26s;
+}
+
+.dust-layer span:nth-child(28) {
+  left: 48%;
+  top: 59%;
+  animation: dustPath1 74s linear infinite;
+  animation-delay: -53s;
+}
+
+.dust-layer span:nth-child(29) {
+  left: 61%;
+  top: 31%;
+  animation: dustPath5 86s linear infinite;
+  animation-delay: -38s;
+}
+
+.dust-layer span:nth-child(30) {
+  left: 73%;
+  top: 87%;
+  animation: dustPath3 71s linear infinite;
+  animation-delay: -19s;
+}
+
+.dust-layer span:nth-child(31) {
+  left: 85%;
+  top: 49%;
+  animation: dustPath6 79s linear infinite;
+  animation-delay: -61s;
+}
+
+.dust-layer span:nth-child(32) {
+  left: 96%;
+  top: 20%;
+  animation: dustPath2 73s linear infinite;
+  animation-delay: -34s;
+}
+
+.dust-layer span:nth-child(33) {
+  left: 7%;
+  top: 53%;
+  animation: dustPath5 81s linear infinite;
+  animation-delay: -57s;
+}
+
+.dust-layer span:nth-child(34) {
+  left: 19%;
+  top: 92%;
+  animation: dustPath3 76s linear infinite;
+  animation-delay: -29s;
+}
+
+.dust-layer span:nth-child(35) {
+  left: 30%;
+  top: 39%;
+  animation: dustPath1 84s linear infinite;
+  animation-delay: -66s;
+}
+
+.dust-layer span:nth-child(36) {
+  left: 42%;
+  top: 7%;
+  animation: dustPath4 72s linear infinite;
+  animation-delay: -43s;
+}
+
+.dust-layer span:nth-child(37) {
+  left: 55%;
+  top: 76%;
+  animation: dustPath2 88s linear infinite;
+  animation-delay: -24s;
+}
+
+.dust-layer span:nth-child(38) {
+  left: 66%;
+  top: 22%;
+  animation: dustPath6 75s linear infinite;
+  animation-delay: -59s;
+}
+
+.dust-layer span:nth-child(39) {
+  left: 79%;
+  top: 61%;
+  animation: dustPath5 83s linear infinite;
+  animation-delay: -36s;
+}
+
+.dust-layer span:nth-child(40) {
+  left: 90%;
+  top: 36%;
+  animation: dustPath3 78s linear infinite;
+  animation-delay: -51s;
+}
+
+.dust-layer span:nth-child(41) {
+  left: 3%;
+  top: 32%;
+  animation: dustPath6 87s linear infinite;
+  animation-delay: -63s;
+}
+
+.dust-layer span:nth-child(42) {
+  left: 13%;
+  top: 82%;
+  animation: dustPath1 73s linear infinite;
+  animation-delay: -45s;
+}
+
+.dust-layer span:nth-child(43) {
+  left: 24%;
+  top: 48%;
+  animation: dustPath4 81s linear infinite;
+  animation-delay: -21s;
+}
+
+.dust-layer span:nth-child(44) {
+  left: 38%;
+  top: 27%;
+  animation: dustPath2 89s linear infinite;
+  animation-delay: -68s;
+}
+
+.dust-layer span:nth-child(45) {
+  left: 50%;
+  top: 86%;
+  animation: dustPath5 76s linear infinite;
+  animation-delay: -39s;
+}
+
+
+
+/* -------------------------
+   DIFFERENT DUST PATHS
+------------------------- */
+
+@keyframes dustPath1 {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+
+  20% {
+    transform: translate(12vw, 7vh);
+  }
+
+  40% {
+    transform: translate(5vw, -13vh);
+  }
+
+  60% {
+    transform: translate(-11vw, -5vh);
+  }
+
+  80% {
+    transform: translate(-7vw, 12vh);
+  }
+
+  100% {
+    transform: translate(0vw, 0vh);
+  }
+}
+
+
+@keyframes dustPath2 {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+
+  20% {
+    transform: translate(-9vw, 11vh);
+  }
+
+  40% {
+    transform: translate(-14vw, -4vh);
+  }
+
+  60% {
+    transform: translate(4vw, -15vh);
+  }
+
+  80% {
+    transform: translate(13vw, 5vh);
+  }
+
+  100% {
+    transform: translate(0vw, 0vh);
+  }
+}
+
+
+@keyframes dustPath3 {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+
+  20% {
+    transform: translate(7vw, -14vh);
+  }
+
+  40% {
+    transform: translate(15vw, -3vh);
+  }
+
+  60% {
+    transform: translate(8vw, 13vh);
+  }
+
+  80% {
+    transform: translate(-10vw, 8vh);
+  }
+
+  100% {
+    transform: translate(0vw, 0vh);
+  }
+}
+
+
+@keyframes dustPath4 {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+
+  20% {
+    transform: translate(-13vw, -8vh);
+  }
+
+  40% {
+    transform: translate(-5vw, 14vh);
+  }
+
+  60% {
+    transform: translate(11vw, 9vh);
+  }
+
+  80% {
+    transform: translate(14vw, -10vh);
+  }
+
+  100% {
+    transform: translate(0vw, 0vh);
+  }
+}
+
+
+@keyframes dustPath5 {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+
+  20% {
+    transform: translate(10vw, 12vh);
+  }
+
+  40% {
+    transform: translate(-8vw, 16vh);
+  }
+
+  60% {
+    transform: translate(-15vw, -2vh);
+  }
+
+  80% {
+    transform: translate(3vw, -14vh);
+  }
+
+  100% {
+    transform: translate(0vw, 0vh);
+  }
+}
+
+
+@keyframes dustPath6 {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+
+  20% {
+    transform: translate(-6vw, -15vh);
+  }
+
+  40% {
+    transform: translate(13vw, -9vh);
+  }
+
+  60% {
+    transform: translate(15vw, 10vh);
+  }
+
+  80% {
+    transform: translate(-9vw, 13vh);
+  }
+
+  100% {
+    transform: translate(0vw, 0vh);
+  }
 }
 
