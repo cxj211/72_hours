@@ -479,7 +479,7 @@ const itemImages = {
   "Torch":
     "torch.png",
 
-  "Canned tuna":
+  "Long-lasting food":
     "canned_tuna.png",
 
   "Radio":
@@ -530,8 +530,22 @@ const itemImages = {
   "Eggs":
     "eggs.png",
 
-  "Original documents":
-    "original_documents.png"
+    "Original documents":
+    "original_documents.png",
+
+  "Rope":
+    "rope.png",
+
+  "Toolbox":
+    "toolbox.png",
+
+  "Lighter":
+    "lighter.png",
+
+  "Thermos":
+    "thermos.png"
+
+
 
 };
 
@@ -545,7 +559,7 @@ const essentialItems = [
 
   "Water",
   "Torch",
-  "Canned tuna",
+  "Long-lasting food",
 
   "Radio",
   "Spare batteries",
@@ -571,8 +585,8 @@ const itemFeedback = {
   "Torch":
     "Provides light when electricity is unavailable.",
 
-  "Canned tuna":
-    "Provides long-lasting food that does not need cooking or refrigeration.",
+  "Long-lasting food":
+    "Provides food that does not need cooking or refrigeration.",
 
   "Radio":
     "Provides important updates when internet or mobile networks are unavailable.",
@@ -624,7 +638,20 @@ const itemFeedback = {
     "Are perishable and may require refrigeration and cooking.",
 
   "Original documents":
-    "Keep copies of important documents and photo ID in your grab bag rather than the originals."
+    "Keep copies of important documents and photo ID in your grab bag rather than the originals.",
+
+  "Rope":
+  "Useful in workplace emergencies, but not a priority for household kits or grab bags.",
+
+"Lighter":
+  "Useful in workplace emergencies, but not a priority for household kits or grab bags.",
+
+"Toolbox":
+  "Contains useful tools, but a whole toolbox is not a priority for household kits or grab bags.",
+
+"Thermos":
+  "Keeps drinks hot or cold, but is less useful when heating or cooling water is difficult."
+
 
 };
 
@@ -691,7 +718,7 @@ const day1Clues = {
       "popup_banana.png",
 
     requiredItem:
-      "Canned tuna",
+      "Long-lasting food",
 
     resultItemImage:
       "canned_tuna.png",
