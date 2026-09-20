@@ -147,7 +147,7 @@ endingSound.volume = 0.3;
 const windySound =
   new Audio("sound/windy.mp3");
 windySound.loop = true;
-windySound.volume = 0.04;
+windySound.volume = 0.1;
 
 const countdownSound =
   new Audio("sound/countdown.mp3");
