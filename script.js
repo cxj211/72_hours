@@ -20,6 +20,27 @@ const day2Screen =
 const day3Screen =
   document.getElementById("day3-screen");
 
+const rewindScreen =
+  document.getElementById("rewind-screen");
+
+const rewindCountdown =
+  document.getElementById("rewind-countdown");
+
+const rewindFinalText =
+  document.getElementById("rewind-final-text");
+
+const rewindHourHand =
+  document.getElementById("rewind-hour-hand");
+
+const rewindMinuteHand =
+  document.getElementById("rewind-minute-hand");
+
+const rewindWhiteFade =
+  document.getElementById("rewind-white-fade");
+
+  const reviewScreen =
+  document.getElementById("review-screen");
+
 const resultsScreen =
   document.getElementById("results-screen");
 
@@ -84,7 +105,7 @@ buttonSound.volume = 0.3;
 
 const hintClickSound =
   new Audio("sound/hint_click.mp3");
-hintClickSound.volume = 0.3;
+hintClickSound.volume = 0.2;
 
 const itemClickSound =
   new Audio("sound/item_click.mp3");
@@ -92,7 +113,7 @@ itemClickSound.volume = 0.15;
 
 const itemSelectSound =
   new Audio("sound/item_select.mp3");
-itemSelectSound.volume = 0.2;
+itemSelectSound.volume = 0.15;
 
 const rightItemSound =
   new Audio("sound/right_item.mp3");
@@ -104,19 +125,19 @@ wrongItemSound.volume = 0.1;
 
 const preparedSound =
   new Audio("sound/prepared.mp3");
-preparedSound.volume = 0.2;
+preparedSound.volume = 0.15;
 
 const unpreparedSound =
   new Audio("sound/unprepared.mp3");
-unpreparedSound.volume = 0.2;
+unpreparedSound.volume = 0.15;
 
 const nextSceneSound =
   new Audio("sound/next_scene.mp3");
-nextSceneSound.volume = 0.3;
+nextSceneSound.volume = 0.2;
 
 const finalSound =
   new Audio("sound/final.mp3");
-finalSound.volume = 0.2;
+finalSound.volume = 0.15;
 
 const endingSound =
   new Audio("sound/ending.mp3");
@@ -126,7 +147,12 @@ endingSound.volume = 0.3;
 const windySound =
   new Audio("sound/windy.mp3");
 windySound.loop = true;
-windySound.volume = 0.2;
+windySound.volume = 0.04;
+
+const countdownSound =
+  new Audio("sound/countdown.mp3");
+
+countdownSound.volume = 0.25;
 
 
 // PLAY SOUND FROM THE START EACH TIME
@@ -250,7 +276,7 @@ closeContentWarning.addEventListener(
 
 
 // =========================
-// CONTENT WARNING → INTRO
+// CONTENT WARNING → INITIAL SELECTION
 // =========================
 
 contentWarningContinue.addEventListener(
@@ -265,7 +291,11 @@ contentWarningContinue.addEventListener(
       "active"
     );
 
-    introScreen.classList.add(
+    selectionMode = "initial";
+
+    shuffleItemGrid();
+
+    selectionScreen.classList.add(
       "active"
     );
 
@@ -275,7 +305,7 @@ contentWarningContinue.addEventListener(
 
 
 // =========================
-// INTRO → INITIAL SELECTION
+// INTRO → DAY 1
 // =========================
 
 startButton.addEventListener(
@@ -286,12 +316,7 @@ startButton.addEventListener(
       "active"
     );
 
-    selectionMode =
-      "initial";
-
-    shuffleItemGrid();
-
-    selectionScreen.classList.add(
+    day1Screen.classList.add(
       "active"
     );
 
@@ -430,37 +455,31 @@ confirmButton.addEventListener(
     // =========================
 
     if (
-      selectionMode === "initial"
-    ) {
+  selectionMode === "initial"
+) {
 
-      day1Screen.classList.add(
-        "active"
-      );
+  introScreen.classList.add(
+    "active"
+  );
 
-    }
+}
 
 
 
     // =========================
-    // FINAL SELECTION
-    // → RESULTS
-    // =========================
+// FINAL SELECTION
+// → REVIEW
+// =========================
 
-    else {
+else {
 
-      showFinalResults();
+  reviewScreen.classList.add(
+    "active"
+  );
 
+  startReviewGame(finalSelection);
 
-      resultsScreen.classList.add(
-        "active"
-      );
-
-
-      playSound(
-        finalSound
-      );
-
-    }
+}
 
   }
 );
@@ -479,7 +498,7 @@ const itemImages = {
   "Torch":
     "torch.png",
 
-  "Long-lasting food":
+  "Canned food":
     "canned_tuna.png",
 
   "Radio":
@@ -559,7 +578,7 @@ const essentialItems = [
 
   "Water",
   "Torch",
-  "Long-lasting food",
+  "Canned food",
 
   "Radio",
   "Spare batteries",
@@ -585,7 +604,7 @@ const itemFeedback = {
   "Torch":
     "Provides light when electricity is unavailable.",
 
-  "Long-lasting food":
+  "Canned food":
     "Provides food that does not need cooking or refrigeration.",
 
   "Radio":
@@ -718,7 +737,7 @@ const day1Clues = {
       "popup_banana.png",
 
     requiredItem:
-      "Long-lasting food",
+      "Canned food",
 
     resultItemImage:
       "canned_tuna.png",
@@ -1244,6 +1263,11 @@ const notInKitButton =
     "not-in-kit-button"
   );
 
+const kitTargetItem =
+  document.getElementById(
+    "kit-target-item"
+  );
+
 
 
 // =========================
@@ -1672,6 +1696,10 @@ checkKitButton.addEventListener(
     setPopupTheme(
       kitPopup
     );
+    
+    kitTargetItem.textContent =
+  clue.requiredItem
+
     
 
     kitItemGrid.innerHTML =
@@ -2131,8 +2159,416 @@ day3Button.addEventListener(
 
 // =========================
 // DAY 3 COMPLETE
-// → FINAL SELECTION
+// → REWIND → FINAL SELECTION
 // =========================
+
+function prepareFinalSelection() {
+
+  selectionMode =
+    "final";
+
+
+  // CLEAR FINAL SELECTION
+
+  finalSelection =
+    [];
+
+
+  // REMOVE OLD SELECTION STYLES
+
+  itemButtons.forEach(
+    function (button) {
+
+      button.classList.remove(
+        "selected"
+      );
+
+    }
+  );
+
+
+  // RESET COUNTER
+
+  selectionCount.textContent =
+    "0 / 9 selected";
+
+
+  // DISABLE CONFIRM
+
+  confirmButton.disabled =
+    true;
+
+
+  // RANDOMISE AGAIN
+
+  shuffleItemGrid();
+
+}
+
+
+function playRewindAnimation() {
+
+  const rewindDuration = 4000;
+
+    // COUNTDOWN BEEPS:
+// NORMAL CLOCK TICK AT FIRST,
+// THEN GRADUALLY FASTER TOWARD 0
+
+const beepTimes = [
+  0,
+  1000,
+  1750,
+  2300,
+  2700,
+  3050,
+  3350,
+  3600,
+  3820
+];
+
+beepTimes.forEach(
+  function (time, index) {
+    setTimeout(
+      function () {
+
+        const beep =
+          countdownSound.cloneNode();
+
+        beep.volume =
+          Math.min(
+            0.20 + (index * 0.007),
+            0.30
+          );
+
+        beep.play().catch(
+          function () {}
+        );
+
+      },
+      time
+    );
+  }
+);
+
+  let animationFrame = null;
+
+  let lastDisplayed = 72;
+
+
+  rewindScreen.classList.add(
+    "active"
+  );
+
+  rewindScreen.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+
+  rewindWhiteFade.classList.remove(
+    "fade-in",
+    "fade-out"
+  );
+
+  rewindWhiteFade.style.opacity =
+    "0";
+
+
+  rewindCountdown.className =
+    "";
+
+  rewindCountdown.style.opacity =
+    "1";
+
+  rewindCountdown.textContent =
+    "72 HOURS";
+
+
+  rewindFinalText.classList.remove(
+    "show"
+  );
+
+
+  // START BOTH HANDS AT EXACTLY 12:00
+
+  rewindMinuteHand.style.transform =
+    "rotate(0deg)";
+
+  rewindHourHand.style.transform =
+    "rotate(0deg)";
+
+
+  const startTime =
+    performance.now();
+
+
+  function animateRewind(now) {
+
+    const elapsed =
+      now - startTime;
+
+    const progress =
+      Math.min(
+        elapsed / rewindDuration,
+        1
+      );
+
+
+    // START SLOWLY, THEN ACCELERATE
+
+    const eased =
+      Math.pow(
+        progress,
+        2.15
+      );
+
+
+    const hours =
+      Math.max(
+        0,
+        Math.ceil(
+          72 * (1 - eased)
+        )
+      );
+
+
+    if (
+      hours !== lastDisplayed
+    ) {
+
+      lastDisplayed =
+        hours;
+
+
+      if (
+        hours > 0
+      ) {
+
+        rewindCountdown.classList.remove(
+          "rewind-number-flash",
+          "rewind-zero-blink"
+        );
+
+
+        rewindCountdown.textContent =
+          hours +
+          (
+            hours === 1
+              ? " HOUR"
+              : " HOURS"
+          );
+
+
+        void rewindCountdown.offsetWidth;
+
+
+        rewindCountdown.classList.add(
+          "rewind-number-flash"
+        );
+
+      }
+
+    }
+
+
+    // 72 HOURS = 3 DAYS.
+    // HOUR HAND: 6 FULL REVERSE TURNS.
+    // MINUTE HAND: 72 FULL REVERSE TURNS.
+    // BOTH BEGIN AND END AT EXACTLY 12:00.
+
+    const minuteRotation =
+      -(eased * 25920);
+
+    const hourRotation =
+      -(eased * 2160);
+
+
+    rewindMinuteHand.style.transform =
+      "rotate(" +
+      minuteRotation +
+      "deg)";
+
+    rewindHourHand.style.transform =
+      "rotate(" +
+      hourRotation +
+      "deg)";
+
+
+    if (
+      progress < 1
+    ) {
+
+      animationFrame =
+        requestAnimationFrame(
+          animateRewind
+        );
+
+      return;
+
+    }
+
+
+    // LOCK BOTH HANDS EXACTLY AT 12:00
+
+    rewindMinuteHand.style.transform =
+      "rotate(-25920deg)";
+
+    rewindHourHand.style.transform =
+      "rotate(-2160deg)";
+
+
+    // 0 HOURS BLINKS THREE TIMES, SLOWLY
+
+    rewindCountdown.classList.remove(
+      "rewind-number-flash"
+    );
+
+    rewindCountdown.textContent =
+      "0 HOURS";
+
+
+    void rewindCountdown.offsetWidth;
+
+
+    rewindCountdown.classList.add(
+      "rewind-zero-blink"
+    );
+
+        // TWO BEEPS FOR THE 0 HOURS BLINK
+
+    [625, 1675].forEach(
+      function (time) {
+
+        setTimeout(
+          function () {
+
+            const beep =
+              countdownSound.cloneNode();
+
+            beep.volume = 0.3;
+
+            beep.play().catch(
+              function () {}
+            );
+
+          },
+          time
+        );
+
+      }
+    );
+
+
+    setTimeout(
+      function () {
+
+        rewindCountdown.style.opacity =
+          "0";
+
+
+        // SMALL → FULL-SIZE "3 DAYS EARLIER"
+
+        setTimeout(
+          function () {
+
+            rewindFinalText.classList.add(
+              "show"
+            );
+
+
+            // HOLD BRIEFLY AFTER IT REACHES FULL SIZE,
+            // THEN FADE THE WHOLE SCREEN TO WHITE.
+
+            setTimeout(
+              function () {
+
+                // FORCE A VISIBLE FADE TO WHITE.
+                // Using the Web Animations API avoids the transition
+                // being skipped when screens/classes change.
+
+                const fadeToWhite =
+                  rewindWhiteFade.animate(
+                    [
+                      { opacity: 0 },
+                      { opacity: 1 }
+                    ],
+                    {
+                      duration: 600,
+                      easing: "ease-in-out",
+                      fill: "forwards"
+                    }
+                  );
+
+
+                fadeToWhite.onfinish =
+                  function () {
+
+                    // WHILE THE SCREEN IS FULLY WHITE,
+                    // SWAP TO THE SECOND SELECTION.
+
+                    rewindScreen.classList.remove(
+                      "active"
+                    );
+
+                    rewindScreen.setAttribute(
+                      "aria-hidden",
+                      "true"
+                    );
+
+                    selectionScreen.classList.add(
+                      "active"
+                    );
+
+
+                    // THEN FADE WHITE AWAY TO REVEAL
+                    // THE SECOND SELECTION SCREEN.
+
+                    const fadeFromWhite =
+                      rewindWhiteFade.animate(
+                        [
+                          { opacity: 1 },
+                          { opacity: 0 }
+                        ],
+                        {
+                          duration: 600,
+                          easing: "ease-in-out",
+                          fill: "forwards"
+                        }
+                      );
+
+
+                    fadeFromWhite.onfinish =
+                      function () {
+
+                        rewindWhiteFade.style.opacity =
+                          "0";
+
+                      };
+
+                  };
+
+              },
+              1200
+            );
+
+          },
+          180
+        );
+
+      },
+      2650
+    );
+
+  }
+
+
+  animationFrame =
+    requestAnimationFrame(
+      animateRewind
+    );
+
+}
+
 
 finalSelectButton.addEventListener(
   "click",
@@ -2141,66 +2577,44 @@ finalSelectButton.addEventListener(
     windySound.pause();
     windySound.currentTime = 0;
 
+    prepareFinalSelection();
 
-    selectionMode =
-      "final";
+    // FADE DAY 3 TO BLACK
+    const blackFade = document.createElement("div");
 
+    blackFade.style.position = "fixed";
+    blackFade.style.inset = "0";
+    blackFade.style.background = "#000";
+    blackFade.style.opacity = "0";
+    blackFade.style.transition = "opacity 1s ease";
+    blackFade.style.zIndex = "9999";
+    blackFade.style.pointerEvents = "none";
 
-    // CLEAR FINAL SELECTION
+    document.body.appendChild(blackFade);
 
-    finalSelection =
-      [];
+    requestAnimationFrame(function () {
+      blackFade.style.opacity = "1";
+    });
 
+    setTimeout(function () {
 
-    // REMOVE OLD SELECTION STYLES
+      // CLOSE COMPLETE POPUP
+      day3CompletePopup
+        .classList
+        .remove("active");
 
-    itemButtons.forEach(
-      function (button) {
+      // HIDE DAY 3
+      day3Screen.classList.remove(
+        "active"
+      );
 
-        button.classList.remove(
-          "selected"
-        );
+      // START REWIND
+      playRewindAnimation();
 
-      }
-    );
+      // REMOVE BLACK COVER
+      blackFade.remove();
 
-
-    // RESET COUNTER
-
-    selectionCount.textContent =
-      "0 / 9 selected";
-
-
-    // DISABLE CONFIRM
-
-    confirmButton.disabled =
-      true;
-
-
-    // RANDOMISE AGAIN
-
-    shuffleItemGrid();
-
-
-    // CLOSE COMPLETE POPUP
-
-    day3CompletePopup
-      .classList
-      .remove("active");
-
-
-    // HIDE DAY 3
-
-    day3Screen.classList.remove(
-      "active"
-    );
-
-
-    // SHOW SELECTION
-
-    selectionScreen.classList.add(
-      "active"
-    );
+    }, 1000);
 
   }
 );
@@ -3016,3 +3430,20 @@ finishButton.addEventListener(
   }
 );
 
+function openFinalResults() {
+
+  reviewScreen.classList.remove(
+    "active"
+  );
+
+  showFinalResults();
+
+  resultsScreen.classList.add(
+    "active"
+  );
+
+  playSound(
+    finalSound
+  );
+
+}

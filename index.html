@@ -15,6 +15,13 @@
     rel="stylesheet"
     href="style.css"
   >
+
+  <link
+  rel="stylesheet"
+  href="review.css"
+>
+
+
 </head>
 
 
@@ -54,7 +61,7 @@
   >
 
     <h2>
-      An earthquake has occurred.
+      An earthquake has occurred
     </h2>
 
     <p>
@@ -62,8 +69,8 @@
     </p>
 
     <p>
-      Explore your surroundings and see how well prepared you are.
-    </p>
+  <span class="intro-highlight">Explore your surroundings</span> and see how well prepared you are.
+</p>
 
     <button id="start-button">
       START
@@ -144,9 +151,9 @@
     <span>Torch</span>
   </button>
 
-  <button class="item" data-item="Long-lasting food">
-    <img src="images/canned_tuna.png" alt="Long-lasting food">
-    <span>Long-lasting food</span>
+  <button class="item" data-item="Canned food">
+    <img src="images/canned_tuna.png" alt="Canned food">
+    <span>Canned food</span>
   </button>
 
   <button class="item" data-item="Radio">
@@ -395,8 +402,8 @@
 
       <div class="instruction-box">
 
-        Find 3 challenges<br>
-        to looking after<br>
+        Find 3 objects<br>
+        to look after<br>
         yourself.
 
       </div>
@@ -602,8 +609,8 @@
 
       <div class="instruction-box day2-instruction">
 
-        Find 3 challenges<br>
-        to staying<br>
+        Find 3 objects<br>
+        to stay<br>
         connected.
 
       </div>
@@ -730,6 +737,19 @@
       <h2>
         MY EMERGENCY KIT
       </h2>
+
+      <p class="kit-instruction">
+
+  Find the
+
+  <span
+    id="kit-target-item"
+    class="target-item"
+  >
+    torch
+  </span>
+
+</p>
 
       <div id="kit-item-grid"></div>
 
@@ -914,7 +934,7 @@
       id="final-select-button"
       class="day-next-button"
     >
-      SELECT ITEMS
+      REWIND 72 HOURS
     </button>
 
   </div>
@@ -923,6 +943,40 @@
 
 
 </section>
+
+<!-- =========================
+     REWIND TRANSITION
+========================= -->
+
+<section
+  id="rewind-screen"
+  class="screen rewind-screen"
+  aria-hidden="true"
+>
+
+  <div class="rewind-vignette"></div>
+
+  <div class="rewind-clock" aria-hidden="true">
+    <div class="rewind-clock-ring"></div>
+    <div id="rewind-hour-hand" class="rewind-hand rewind-hour-hand"></div>
+    <div id="rewind-minute-hand" class="rewind-hand rewind-minute-hand"></div>
+    <div class="rewind-center-dot"></div>
+  </div>
+
+  <div class="rewind-content">
+    <div id="rewind-countdown">72 HOURS</div>
+    <div id="rewind-final-text">3 DAYS EARLIER</div>
+  </div>
+
+</section>
+
+<!-- WHITE FADE BETWEEN REWIND AND SECOND SELECTION -->
+<div
+  id="rewind-white-fade"
+  class="rewind-white-fade"
+  aria-hidden="true"
+></div>
+
 
 <!-- =========================
      FINAL RESULTS SCREEN
@@ -1078,19 +1132,270 @@
   FOR PLAYING!
   </h1>
 
-    <p>
-       You have completed 72 Hours
-    </p>
+  </div>
+
+</section>
+
+<main id="review-screen">
+   <div class="review-stage">
+    <div class="right-panel-bg">
+    </div>
+    <!-- FULL-SCREEN COLLAPSING BRICK WALL BACKGROUND -->
+    <div aria-hidden="true" class="background-wall" id="background-wall">
+     <div class="background-bricks" id="background-bricks">
+     </div>
+     <div class="background-wall-dust">
+     </div>
+    </div>
+    <!-- TOP INSTRUCTION -->
+    <header class="review-instruction">
+     Drag an item to the matching situation.
+    </header>
+    <!-- LEFT: SELECTED ITEMS -->
+    <aside class="kit-panel">
+     <div class="panel-title">
+      YOUR KIT
+     </div>
+     <div class="inventory" id="inventory">
+     </div>
+    </aside>
+    <!-- CENTER: 9 SITUATIONS -->
+    <section aria-label="72-hour replay" class="route-panel">
+     <div class="day-row day-row-1">
+      <div class="scenario-card" data-step="0">
+       <div class="scenario-caption">
+        It's too dark
+       </div>
+       <img alt="Ceiling light with no electricity" src="images/review_light_before.png"/>
+       <div class="result-overlay">
+       </div>
+      </div>
+      <div class="scenario-card" data-step="1">
+       <div class="scenario-caption">
+        I'm thirsty
+       </div>
+       <img alt="Empty water bottle" src="images/review_bottle_before.png"/>
+       <div class="result-overlay">
+       </div>
+      </div>
+      <div class="scenario-card" data-step="2">
+       <div class="scenario-caption">
+        Food is spoiled
+       </div>
+       <img alt="Spoiled banana" src="images/review_banana_before.png"/>
+       <div class="result-overlay">
+       </div>
+      </div>
+     </div>
+     <div class="day-row day-row-2">
+      <div class="scenario-card" data-step="5">
+       <div class="scenario-caption">
+        No electricity
+       </div>
+       <img alt="Power outlet with no electricity" src="images/review_power_outlet_before.png"/>
+       <div class="result-overlay">
+       </div>
+      </div>
+      <div class="scenario-card" data-step="4">
+       <div class="scenario-caption">
+        Phone is running low
+       </div>
+       <img alt="Phone with low battery" src="images/review_phone_before.png"/>
+       <div class="result-overlay">
+       </div>
+      </div>
+      <div class="scenario-card" data-step="3">
+       <div class="scenario-caption">
+        I need some news
+       </div>
+       <img alt="Computer with no internet" src="images/review_laptop_before.png"/>
+       <div class="result-overlay">
+       </div>
+      </div>
+     </div>
+     <div class="day-row day-row-3">
+      <div class="scenario-card" data-step="6">
+       <div class="scenario-caption">
+        Glass on the floor
+       </div>
+       <img alt="Broken glass on the floor" src="images/review_glass_before.png"/>
+       <div class="result-overlay">
+       </div>
+      </div>
+      <div class="scenario-card" data-step="7">
+       <div class="scenario-caption">
+        It's cold and windy
+       </div>
+       <img alt="Cold and windy outdoors" src="images/review_tree_before.png"/>
+       <div class="result-overlay">
+       </div>
+      </div>
+      <div class="scenario-card" data-step="8">
+       <div class="scenario-caption">
+        Neighbour is injured
+       </div>
+       <img alt="Injured neighbour" src="images/review_neighbour_before.png"/>
+       <div class="result-overlay">
+       </div>
+      </div>
+     </div>
+    </section>
+    <!-- TOP-LEFT: REAL 60 SECOND TIMER -->
+    <section class="timer-strip timer-top-left">
+     <div aria-label="Time remaining" class="numeric-timer" id="numeric-timer">
+      01:00
+     </div>
+    </section>
+    <!-- RIGHT: END STATUS + NARRATIVE CLOCK -->
+    <aside class="time-panel">
+     <img alt="" aria-hidden="true" class="result-scroll-closed" id="result-scroll-closed" src="images/scroll_closed.png"/>
+     <section aria-live="polite" class="end-status-card" id="end-status-card">
+
+  <div class="result-parchment">
+
+    <img
+      alt=""
+      aria-hidden="true"
+      class="result-scroll result-scroll-open"
+      src="images/scroll_open.png"
+    />
+
+    <div class="result-parchment-content">
+
+      <div class="end-status-icon" id="end-status-icon"></div>
+
+      <h2 id="end-status-title"></h2>
+
+      <p id="end-status-text"></p>
+
+      <div class="end-status-actions">
+        <button class="primary-button" id="retry-button" type="button">
+          RETRY
+        </button>
+
+        <button class="secondary-button" id="end-secondary-button" type="button">
+          SEE MY RESULTS
+        </button>
+      </div>
+
+    </div>
 
   </div>
 
 </section>
+     <section class="story-clock-card">
+      <div class="day-passed" id="day-passed">
+      </div>
+      <div class="story-clock">
+       <div class="clock-face">
+        <span class="clock-mark m0">
+        </span>
+        <span class="clock-mark m1">
+        </span>
+        <span class="clock-mark m2">
+        </span>
+        <span class="clock-mark m3">
+        </span>
+        <span class="clock-mark m4">
+        </span>
+        <span class="clock-mark m5">
+        </span>
+        <span class="clock-mark m6">
+        </span>
+        <span class="clock-mark m7">
+        </span>
+        <span class="clock-mark m8">
+        </span>
+        <span class="clock-mark m9">
+        </span>
+        <span class="clock-mark m10">
+        </span>
+        <span class="clock-mark m11">
+        </span>
+        <div class="clock-hand" id="clock-hand">
+        </div>
+        <div class="clock-pin">
+        </div>
+       </div>
+      </div>
+      <div class="story-hours" id="story-hours">
+      </div>
+     </section>
+    </aside>
+   </div>
+  </main>
+  <!-- REVIEW INTRO -->
+<div class="gate-intro" id="intro-popup">
+  <div class="gate-intro-stage">
+
+    <div class="gate-half gate-half-left" aria-hidden="true">
+      <img src="images/gate_left.png" alt="" draggable="false">
+    </div>
+
+    <div class="gate-half gate-half-right" aria-hidden="true">
+      <img src="images/gate_right.png" alt="" draggable="false">
+    </div>
+
+    <div class="gate-intro-content">
+
+      <h2>72 HOURS ONCE MORE</h2>
+
+      <p class="gate-story">
+        You’re back at the beginning, with another chance to prepare
+      </p>
+
+      <p class="gate-play">
+        Drag the right item to each situation
+      </p>
+
+      <div class="gate-rules">
+
+  <div class="gate-rule">
+    <div class="gate-rule-icon">
+      <img src="images/icon_timer.png" alt="">
+    </div>
+    <div class="gate-rule-text">
+      <div>You have</div>
+      <div><b>60 seconds total</b></div>
+    </div>
+  </div>
+
+  <div class="gate-rule">
+    <div class="gate-rule-icon">
+      <img src="images/icon_brick_wall.png" alt="">
+    </div>
+    <div class="gate-rule-text">
+      <div>Wall collapses</div>
+      <div><b>every 5 seconds</b></div>
+    </div>
+  </div>
+
+  <div class="gate-rule">
+    <div class="gate-rule-icon">
+      <img src="images/icon_warning.png" alt="">
+    </div>
+    <div class="gate-rule-text">
+      <div>Wrong match</div>
+      <div><b>costs 5 seconds</b></div>
+    </div>
+  </div>
+
+</div>
+
+      <button class="gate-start-button" id="review-start-button" type="button">
+  START
+</button>
+
+    </div>
+  </div>
+</div>
 
   <!-- =========================
        JAVASCRIPT
   ========================= -->
 
   <script src="script.js"></script>
+  <script src="review.js"></script>
 
 
 </body>
